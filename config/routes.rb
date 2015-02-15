@@ -1,17 +1,17 @@
 Rails.application.routes.draw do
-  get 'users/new'
+  #get 'sessions/new'
+  #get 'users/new'
 
-  root               'static_pages#home'
-  get 'home'    =>   'static_pages#home'
-  get 'about'   =>   'static_pages#about'
-  get 'wedding' =>   'static_pages#wedding'
+  root               		'static_pages#home'
+  get 		'home'    => 	'static_pages#home'
+  get 		'about'   =>   	'static_pages#about'
+  get		'wedding' =>   	'static_pages#wedding'
+  get		'signup'  =>	'users#new'
+  get    	'login'   => 	'sessions#new'
+  post   	'login'   => 	'sessions#create'
+  delete 	'logout'  => 	'sessions#destroy'
   
-  #root_path      _>  '/'
-  #root_url       _>  'http://samandseb.ngrok.com'
-  
-  #wedding_path   _>  '/wedding'
-  #wedding_url    _>  'http://samandseb.ngrok.com/wedding'
-
+  resources :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
