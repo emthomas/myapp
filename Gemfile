@@ -5,6 +5,10 @@ source 'https://rubygems.org'
 gem 'rails', '4.2.0'
 # Add bootstrap
 gem 'bootstrap-sass', '3.2.0.0'
+
+# Add bcrypt for password encription
+gem 'bcrypt', '3.1.7'
+
 # Use mysql as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
