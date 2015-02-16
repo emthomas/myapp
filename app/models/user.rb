@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   
   before_save { self.email = email.downcase }
   
-  validates :name, presence: true, length: { maximum: 50 }
+  validates :first_name, presence: true, length: { maximum: 20 }
+  validates :last_name, presence: true, length: { maximum: 20 }
   
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
   validates :email, presence: true, length: { maximum: 255 },
@@ -11,7 +12,7 @@ class User < ActiveRecord::Base
                     uniqueness: { case_sensitive: false }
                     
   has_secure_password
-  validates :password, length: { minimum: 6 }
+  validates :password, length: { minimum: 6 }, allow_blank: true
   
   # Returns the hash digest of the given string.
   def User.digest(string)

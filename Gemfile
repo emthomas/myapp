@@ -9,6 +9,13 @@ gem 'bootstrap-sass', '3.2.0.0'
 # Add bcrypt for password encription
 gem 'bcrypt', '3.1.7'
 
+#Create sample users
+gem 'faker',  '1.4.2'
+
+#Clean Users page
+gem 'will_paginate',           '3.0.7'
+gem 'bootstrap-will_paginate', '0.0.10'
+
 # Use mysql as the database for Active Record
 gem 'mysql2'
 # Use SCSS for stylesheets
