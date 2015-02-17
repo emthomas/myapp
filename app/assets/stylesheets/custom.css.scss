@@ -224,3 +224,11 @@ input {
     border-bottom: 1px solid $gray-lighter;
   }
 }
+
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+th,td {
+    padding: 15px;
+}
