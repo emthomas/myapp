@@ -20,7 +20,7 @@ class UsersSignupTest < ActionDispatch::IntegrationTest
       post_via_redirect users_path, user: { first_name:  "Example",
     						   				last_name:  "User",
                                             email: "user@example.com",
-                                            password:              "password",
+                                            password: "password",
                                             password_confirmation: "password" }
     end
     assert_template 'users/show'

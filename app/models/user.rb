@@ -3,8 +3,11 @@ class User < ActiveRecord::Base
   
   before_save do 
   	self.email = email.downcase
-  	#self.username = "#{first_name}.#{last_name}"
-  	#self.address = User.digest(address)
+  	self.username = (last_name.gsub(/[^0-9a-z]/i, '')+"."+first_name.gsub(/[^0-9a-z]/i, '')).downcase
+  end
+  
+  after_create do 
+  	self.username = (last_name.gsub(/[^0-9a-z]/i, '')+"."+first_name.gsub(/[^0-9a-z]/i, '')).downcase
   end
   
   validates :first_name, presence: true, length: { maximum: 20 }
@@ -49,4 +52,5 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+  
 end
