@@ -1,17 +1,19 @@
-<!-- Split button -->
 <div>
-<div class="btn-group">
-  <button type="button" class="btn btn-danger">Filters</button>
-  <button type="button" class="btn btn-danger dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-    <span class="caret"></span>
-    <span class="sr-only">Toggle Dropdown</span>
-  </button>
-  <ul class="dropdown-menu" role="menu">
-    <li><%= link_to "None", users_path %></li>
-    <li><%= link_to "Has address", users_path(filter_param: 'address is not null') %></li>
-    <li><%= link_to "No address", users_path(filter_param: 'address is null') %></li>
-    <li><%= link_to "Has email", users_path(filter_param: 'email is not null') %></li>
-    <li><%= link_to "No email", users_path(filter_param: 'email is null') %></li>
-  </ul>
-</div>
+<%= form_tag(users_path, method: "get") do %>
+<table>
+<tr>
+    <th><%= label_tag(:country_param, "Country:") %></th>
+    <th><%= label_tag(:address_param, "Address:") %></th>
+    <th><%= label_tag(:email_param, "Email:") %></th>
+    <th><%= label_tag(:admin_param, "Admin:") %></th>
+</tr>
+<tr>
+	<td><%= select_tag(:country_param, options_for_select([['All', ''], ['USA', 'country '], ['CANADA', 'A'], ['HAITI', 'A'], ['OTHER', 'A']]) )%></td>
+	<td><%= select_tag(:address_param, options_for_select([['All', ''], ['Unknown', 'address is null'], ['Known', 'address is not null']]) )%></td>
+	<td><%= select_tag(:email_param, options_for_select([['All', ''], ['Unknown', 'email is null'], ['Known', 'email is not null']]) )%></td>
+	<td><%= select_tag(:admin_param, options_for_select([['All', ''], ['Yes', 'admin = 1'], ['No', 'admin = 0']]) )%></td>
+</tr>
+</table>
+<%= submit_tag("Apply Filters") %>
+<% end %>
 </div>

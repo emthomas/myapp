@@ -14,5 +14,9 @@ module UsersHelper
   def username(user)
      (user.last_name.gsub(/[^0-9a-z]/i, '')+"."+user.first_name.gsub(/[^0-9a-z]/i, '')).downcase
   end
+  
+  def is_admin(user)
+     user.admin
+  end
 
 end

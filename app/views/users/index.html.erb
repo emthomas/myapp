@@ -12,7 +12,10 @@
     <th>Full Name</th>
     <th>Username</th>
     <th>Email</th>
-    <th>Address</th>		
+    <th>Address</th>
+    <% if current_user.admin? %>
+       <th>Admin</th>
+    <% end %>		
     <th>Actions</th>
 </tr>
   <%= render @users %>

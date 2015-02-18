@@ -42,7 +42,11 @@ class UsersController < ApplicationController
   end
   
   def index
-       @users = User.where(params[:filter_param]).order(:last_name).paginate(page: params[:page])
+       @users = User.where(params[:address_param])
+                    .where(params[:email_param])
+                    .where(params[:admin_param])
+                    .order(:last_name)
+                    .paginate(page: params[:page])
   end
   
   private
@@ -52,6 +56,7 @@ class UsersController < ApplicationController
       								:last_name, 
       								:email,
       								:address, 
+      								:admin,
       								:password,
       								:password_confirmation)
     end

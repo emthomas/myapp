@@ -3,6 +3,8 @@ class User < ActiveRecord::Base
   
   before_save do 
   	self.email = email.downcase if !email.nil?
+  	self.email = nil if (!email.nil? && email.empty?)
+    self.address = nil if (!address.nil? && address.empty?)
   	self.username = (last_name.gsub(/[^0-9a-z]/i, '')+"."+first_name.gsub(/[^0-9a-z]/i, '')).downcase
   end
   
