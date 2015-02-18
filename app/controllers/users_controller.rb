@@ -42,7 +42,7 @@ class UsersController < ApplicationController
   end
   
   def index
-    @users = User.order(:last_name).paginate(page: params[:page])
+       @users = User.where(params[:filter_param]).order(:last_name).paginate(page: params[:page])
   end
   
   private

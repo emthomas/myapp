@@ -3,10 +3,12 @@
 <td><%= user.username %></td>
 <td><%= user.email %></td>
 <td><%= user.address %></td>
-<td> <% if current_user.admin? && !current_user?(user) %>
+<td> <% if current_user.admin? || current_user?(user) %>
      <%= link_to "edit", edit_user_path(user) %>
-   | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
      <% end %> 
+     <% if current_user.admin? && !current_user?(user) %>
+   | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
+     <% end %>
 </td>
 
 <tr>

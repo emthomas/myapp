@@ -2,7 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token
   
   before_save do 
-  	self.email = email.downcase
+  	self.email = email.downcase if !email.nil?
   	self.username = (last_name.gsub(/[^0-9a-z]/i, '')+"."+first_name.gsub(/[^0-9a-z]/i, '')).downcase
   end
   
