@@ -10,7 +10,7 @@ namespace :table do
 
   desc "TODO"
   task restore: :environment do
-     system "gunzip < "+db_dir.to_s+"/users.sql.gz | mysqldump -u#{db_config['username']} -p#{db_config['password']} #{db_config['database']} users"
+     system "gunzip < "+db_dir.to_s+"/users.sql.gz | mysql -u#{db_config['username']} -p#{db_config['password']} #{db_config['database']}"
   end
 
 end

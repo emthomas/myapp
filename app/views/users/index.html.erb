@@ -1,8 +1,10 @@
 <% provide(:title, 'All guests') %>
 <div class="center jumbotron">
 	<h1>All guests</h1>
+	<h3>We now have <%= User.count %> guests!!!</h3>
 	<%= link_to "Add guest!", signup_path , class: "btn btn-lg btn-primary" %>
 </div>
+
 <%= render 'filters' %>
 
 <%= will_paginate %>

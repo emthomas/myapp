@@ -35,7 +35,11 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
       flash[:success] = "Profile updated"
-      redirect_to @user
+      if logged_in_admin?
+      	 redirect_to users_path
+      else
+         redirect_to @user
+      end 
     else
       render 'edit'
     end
