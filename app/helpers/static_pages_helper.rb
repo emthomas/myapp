@@ -6,5 +6,10 @@ module StaticPagesHelper
     days = (wedding_date - today).to_i
     "#{days} days until We Become One!!!"
   end
+  
+  def get_rsvp(option)
+     rsvp_options = ["In Person", "In Spirit"]
+     rsvp_options[option]
+  end
 
 end

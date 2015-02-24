@@ -2,12 +2,16 @@
 <div class="center jumbotron">
   <h1><%= get_days_left %></h1>
 
+<div class="rsvp">
   <h2>
   I'll Be There:
   </h2>
-  
-  <%= link_to "In Person", '#', class: "btn btn-lg btn-primary my-btn" %>
-  <%= link_to "In Spirit", '#', class: "btn btn-lg btn-primary" %>
+  <%= form_tag(wedding_path, method: "get") do %>
+  <%= submit_tag get_rsvp(0), class: "btn btn-lg btn-primary" %>
+  <%= submit_tag get_rsvp(1), class: "btn btn-lg btn-primary" %>
+  <% end %>
+</div>
+
 </div>
 
 <section class="wedding_info" >

@@ -1,4 +1,6 @@
 class StaticPagesController < ApplicationController
+  include StaticPagesHelper
+ 
   before_action :logged_in_user, only: [:wedding]
   
   def home
@@ -8,16 +10,26 @@ class StaticPagesController < ApplicationController
   end
   
   def wedding
-    wedding_path
+     
+  	if params[:commit] == get_rsvp(0)
+  	 	current_user.update_attribute(:is_coming, true)
+  	elsif params[:commit] == get_rsvp(1)
+  	 	current_user.update_attribute(:is_coming, false)
+  	 end
+  	 
+     wedding_path
   end 
   
   private
 
     def user_params
-      params.require(:user).permit( :first_name, 
-      								:last_name,
+      params.require(:user).permit(:first_name, 
+      								:last_name, 
       								:email,
       								:address, 
+      								:admin, 
+      								:invited, 
+      								:is_coming,
       								:password,
       								:password_confirmation)
     end

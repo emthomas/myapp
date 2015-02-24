@@ -30,6 +30,12 @@
 	  <% if current_user.admin? %>
         <%= f.label :admin %>
         <%= f.check_box :admin, class: 'form-control' %>
+        
+        <%= f.label :invited %>
+        <%= f.check_box :invited, class: 'form-control' %>
+        
+        <%= f.label :is_coming %>
+        <%= f.check_box :is_coming, class: 'form-control' %>
      <% end %> 
      
       <%= f.submit "Save changes", class: "btn btn-primary" %>

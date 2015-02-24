@@ -5,6 +5,8 @@
 <td><%= user.address %></td>
 <% if current_user.admin? %>
 <td><%= user.admin %></td>
+<td><%= user.invited %></td>
+<td><%= user.is_coming %></td>
 <% end %> 
 <td> <% if current_user.admin? || current_user?(user) %>
      <%= link_to "edit", edit_user_path(user) %>

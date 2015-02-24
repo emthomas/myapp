@@ -49,6 +49,8 @@ class UsersController < ApplicationController
        @users = User.where(params[:address_param])
                     .where(params[:email_param])
                     .where(params[:admin_param])
+                    .where(params[:invited_param])
+                    .where(params[:is_coming_param])
                     .order(:last_name)
                     .paginate(page: params[:page])
   end
@@ -60,7 +62,9 @@ class UsersController < ApplicationController
       								:last_name, 
       								:email,
       								:address, 
-      								:admin,
+      								:admin, 
+      								:invited, 
+      								:is_coming,
       								:password,
       								:password_confirmation)
     end

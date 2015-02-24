@@ -2,6 +2,8 @@
 <div class="center jumbotron">
 	<h1>All guests</h1>
 	<h3>We now have <%= User.count %> guests!!!</h3>
+	<h3><%= User.where(invited: true).count %> guests will be invited!!!</h3>
+	<h3><%= User.where(is_coming: true).count %> guests are coming!!!</h3>
 	<%= link_to "Add guest!", signup_path , class: "btn btn-lg btn-primary" %>
 </div>
 
@@ -17,6 +19,8 @@
     <th>Address</th>
     <% if current_user.admin? %>
        <th>Admin</th>
+       <th>Invited</th>
+       <th>Is Coming</th>
     <% end %>		
     <th>Actions</th>
 </tr>

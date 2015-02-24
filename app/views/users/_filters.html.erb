@@ -1,4 +1,4 @@
-<div>
+<div class="filters" >
 <%= form_tag(users_path, method: "get") do %>
 <table>
 <tr>
@@ -6,12 +6,16 @@
     <th><%= label_tag(:address_param, "Address:") %></th>
     <th><%= label_tag(:email_param, "Email:") %></th>
     <th><%= label_tag(:admin_param, "Admin:") %></th>
+    <th><%= label_tag(:invited_param, "Invited:") %></th>
+    <th><%= label_tag(:is_coming_param, "Is Coming:") %></th>
 </tr>
 <tr>
 	<td><%= select_tag(:country_param, options_for_select([['All', ''], ['USA', 'country '], ['CANADA', 'A'], ['HAITI', 'A'], ['OTHER', 'A']]) )%></td>
 	<td><%= select_tag(:address_param, options_for_select([['All', ''], ['Unknown', 'address is null'], ['Known', 'address is not null']]) )%></td>
 	<td><%= select_tag(:email_param, options_for_select([['All', ''], ['Unknown', 'email is null'], ['Known', 'email is not null']]) )%></td>
 	<td><%= select_tag(:admin_param, options_for_select([['All', ''], ['Yes', 'admin = 1'], ['No', 'admin = 0']]) )%></td>
+	<td><%= select_tag(:invited_param, options_for_select([['All', ''], ['Yes', 'invited = 1'], ['No', 'invited = 0']]) )%></td>
+	<td><%= select_tag(:is_coming_param, options_for_select([['All', ''], ['Yes', 'is_coming = 1'], ['No', 'is_coming = 0']]) )%></td>
 </tr>
 </table>
 <%= submit_tag("Apply Filters") %>
