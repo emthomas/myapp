@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
+  attr_accessor :activation_token
   
   before_save do 
   	self.email = email.downcase if !email.nil?
@@ -7,6 +8,8 @@ class User < ActiveRecord::Base
     self.address = nil if (!address.nil? && address.empty?)
   	self.username = (last_name.gsub(/[^0-9a-z]/i, '')+"."+first_name.gsub(/[^0-9a-z]/i, '')).downcase
   end
+  
+  before_create :create_activation_digest
   
   after_create do 
   	self.username = (last_name.gsub(/[^0-9a-z]/i, '')+"."+first_name.gsub(/[^0-9a-z]/i, '')).downcase
@@ -54,5 +57,18 @@ class User < ActiveRecord::Base
   def forget
     update_attribute(:remember_digest, nil)
   end
+  
+  private
+
+    # Converts email to all lower-case.
+    def downcase_email
+      self.email = email.downcase unless email.nil?
+    end
+
+    # Creates and assigns the activation token and digest.
+    def create_activation_digest
+      self.activation_token  = User.new_token
+      self.activation_digest = User.digest(activation_token)
+    end
   
 end

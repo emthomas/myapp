@@ -12,7 +12,9 @@ User.create(first_name: "Sebastien",
 			address: "10314 Strathmore Hall Street Apt 203, North Bethesda, MD 20852",
 			password: "admin123", 
 			password_confirmation: "admin123", 
-			admin:true)
+			admin:true,
+            activated: true,
+            activated_at: Time.zone.now)
 			
 User.create(first_name: "Samantha", 
 			last_name: "Louis", 
@@ -20,7 +22,9 @@ User.create(first_name: "Samantha",
 			address: "1611 Pine St, New Orleans, LA 70118",
 			password: "admin123", 
 			password_confirmation: "admin123", 
-			admin:true)
+			admin:true,
+            activated: true,
+            activated_at: Time.zone.now)
 
 #49.times do |n|
 #  first_name  = Faker::Name.first_name

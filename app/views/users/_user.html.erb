@@ -8,12 +8,21 @@
 <td><%= user.invited %></td>
 <td><%= user.is_coming %></td>
 <% end %> 
-<td> <% if current_user.admin? || current_user?(user) %>
-     <%= link_to "edit", edit_user_path(user) %>
-     <% end %> 
-     <% if current_user.admin? && !current_user?(user) %>
-   | <%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %>
-     <% end %>
+<td> 
+	<ul>
+			<% if current_user.admin? || current_user?(user) %>
+     		<li><%= link_to "edit", edit_user_path(user) %></li>
+     		<li><% if user.activated? %>
+     			 <%= link_to "deactivate", deactivate_user_path(user) %>
+     		<% else %>
+     			 <%= link_to "activate", activate_user_path(user) %>
+     		<% end %>
+     	<% end %>
+     		</li>
+     	<% if current_user.admin? && !current_user?(user) %>
+   			<li><%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %></li>
+     	<% end %>
+     </ul>
 </td>
 
 <tr>

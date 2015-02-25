@@ -11,25 +11,28 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150221220222) do
+ActiveRecord::Schema.define(version: 20150224051310) do
 
   create_table "roles", force: :cascade do |t|
     t.string "name", limit: 255
   end
 
   create_table "users", force: :cascade do |t|
-    t.string   "first_name",      limit: 50
-    t.string   "last_name",       limit: 50
-    t.string   "username",        limit: 100
-    t.string   "email",           limit: 100
-    t.string   "address",         limit: 255
-    t.boolean  "admin",           limit: 1,   default: false
-    t.datetime "created_at",                                  null: false
-    t.datetime "updated_at",                                  null: false
-    t.string   "password_digest", limit: 255
-    t.string   "remember_digest", limit: 255
-    t.boolean  "invited",         limit: 1,   default: false
-    t.boolean  "is_coming",       limit: 1,   default: false
+    t.string   "first_name",        limit: 50
+    t.string   "last_name",         limit: 50
+    t.string   "username",          limit: 100
+    t.string   "email",             limit: 100
+    t.string   "address",           limit: 255
+    t.boolean  "admin",             limit: 1,   default: false
+    t.datetime "created_at",                                    null: false
+    t.datetime "updated_at",                                    null: false
+    t.string   "password_digest",   limit: 255
+    t.string   "remember_digest",   limit: 255
+    t.boolean  "invited",           limit: 1,   default: false
+    t.boolean  "is_coming",         limit: 1,   default: false
+    t.string   "activation_digest", limit: 255
+    t.boolean  "activated",         limit: 1,   default: false
+    t.datetime "activated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
