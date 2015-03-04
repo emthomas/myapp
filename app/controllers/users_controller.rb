@@ -14,9 +14,9 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)    # Not the final implementation!
     if @user.save
-      if @user.email
-         UserMailer.account_activation(@user).deliver_now
-       end
+      if !@user.email.nil?
+         @user.send_activation_email
+      end
        
       if logged_in_admin?
         flash[:success] = "Account Created"
@@ -38,18 +38,41 @@ class UsersController < ApplicationController
   # Activate a user in the database
   def activate
     @user = User.find(params[:id])
-    @user.update_attribute(:activation_digest, User.digest(User.new_token))
-    @user.update_attribute(:activated, true)
+    @user.activate
     redirect_to users_url
   end
   
   # Activate a user in the database
   def deactivate
     @user = User.find(params[:id])
-    @user.update_attribute(:activated, false)
-    @user.update_attribute(:activation_digest, nil)
+    @user.deactivate
     redirect_to users_url
   end
+  
+  def invite
+  	@user = User.find(params[:id])
+    @user.update_attribute(:invited, true)
+    redirect_to users_url
+  end
+  
+  def uninvite
+  	@user = User.find(params[:id])
+    @user.update_attribute(:invited, false)
+    redirect_to users_url
+  end
+  
+  def iscoming
+  	@user = User.find(params[:id])
+    @user.update_attribute(:is_coming, true)
+    redirect_to users_url
+  end
+  
+  def isnotcoming
+  	@user = User.find(params[:id])
+    @user.update_attribute(:is_coming, false)
+    redirect_to users_url
+  end
+  
   
   def destroy
     User.find(params[:id]).destroy

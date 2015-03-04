@@ -4,11 +4,12 @@
 
 <div class="rsvp">
   <h2>
-  I'll Be There:
+  RSVP:
   </h2>
   <%= form_tag(wedding_path, method: "get") do %>
-  <%= submit_tag get_rsvp(0), class: "btn btn-lg btn-primary" %>
-  <%= submit_tag get_rsvp(1), class: "btn btn-lg btn-primary" %>
+     <% (0..get_options.length-1).each do |i| %>
+        <%= submit_tag get_options.at(i), class: "btn btn-lg btn-primary" %>
+      <% end %>
   <% end %>
 </div>
 
@@ -41,6 +42,7 @@ Westbury, NY 11590
 <ul>
 <li><a href="https://www.jcpenney.com/dotcom/jsp/giftregistry/gifterGiftList/gifterGiftList.jsp?filterBy=viewAll&regId=80060645&sort=category&view=list&viewType=PUBLIC"> JC Penny </a></li>
 <li><a href="http://www1.macys.com/registry/wedding/guest/?registryId=6297389"> Macy's </a></li>
+<li><a href="http://carnival.honeymoonwishes.com/Honeymoon-Registry-261057-Carnival-Eastern-Caribbean-Emmanuel-Thomas-Samantha-Louis.html"> Carnival Cruise</a></li>
 </ul>
 
 </section>

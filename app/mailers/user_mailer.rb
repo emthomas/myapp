@@ -22,4 +22,10 @@ class UserMailer < ApplicationMailer
 
     mail to: "to@example.org"
   end
+  
+  def welcome_email(user)
+    @user = user
+    @url  = 'http://samandseb.ngrok.com'
+    mail(to: @user.email, subject: 'Welcome to My Awesome Site')
+  end
 end

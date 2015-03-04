@@ -13,6 +13,10 @@ Rails.application.routes.draw do
   	member do
   		get :activate
   		get :deactivate
+  		get :invite
+  		get :uninvite
+  		get :iscoming
+  		get :isnotcoming
   	end
   end
   
