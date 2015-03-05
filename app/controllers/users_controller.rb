@@ -8,7 +8,22 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if params[:commit]
+    	@user = User.create(first_name: params[:first_name], 
+							last_name: params[:last_name],
+							password: "password", 
+							password_confirmation: "password")
+							
+    	if @user.save
+  			flash[:success] = @user.first_name+" was Added"
+  		else
+  			flash[:danger] = "There was an error"
+  		end
+  		
+  		redirect_to users_path
+    else
+    	@user = User.new
+    end
   end
   
   def create
@@ -100,6 +115,7 @@ class UsersController < ApplicationController
                     .where(params[:admin_param])
                     .where(params[:invited_param])
                     .where(params[:is_coming_param])
+                    .where("LOWER(first_name) LIKE '%#{params[:name_filter_param]}%' OR LOWER(last_name) LIKE '%#{params[:name_filter_param]}%'")
                     .order(:last_name)
                     .paginate(page: params[:page])
   end
@@ -121,23 +137,4 @@ class UsersController < ApplicationController
     
     # Before filters
 
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-    
-    # Confirms the correct user.
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless ( current_user?(@user) || (logged_in? && current_user.admin?))
-    end
-    
-    # Confirms an admin user.
-    def admin_user
-      redirect_to(root_url) unless (logged_in? && current_user.admin?)
-    end
 end

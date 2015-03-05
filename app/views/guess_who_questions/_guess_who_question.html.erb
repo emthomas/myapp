@@ -1,0 +1,22 @@
+<tr>
+	<% if current_user.admin?%>
+		<%= form_tag(edit_guess_who_question_path(guess_who_question), method: "get") do %>
+			<td><%= text_field_tag :question, guess_who_question.question, size: 75 %></td>
+			<td><%= select_tag(:answer, options_for_select([['Seb', 'seb'], ['Sam', 'sam']], guess_who_question.answer) )%></td>
+			<td><%= guess_who_question.user_answer %></td>
+			<td><%= link_to "Seb", save_user_answer_guess_who_question_path(guess_who_question, :answer => "seb") %> |
+				<%= link_to "Sam", save_user_answer_guess_who_question_path(guess_who_question, :answer => "sam") %>
+			</td>
+			<td>
+				<li><%= submit_tag "edit" %></li>
+				<li><%= link_to "delete", guess_who_question, method: :delete, data: { confirm: "You sure?" } %></li>
+			</td>
+		<% end %>
+	<% else %>
+		<td><%= guess_who_question.question %></td>
+		<td><%= guess_who_question.user_answer %></td>
+			<td><%= link_to "Seb", save_user_answer_guess_who_question_path(guess_who_question, :answer => "seb") %> |
+				<%= link_to "Sam", save_user_answer_guess_who_question_path(guess_who_question, :answer => "sam") %>
+			</td>
+	<% end %>
+</tr>

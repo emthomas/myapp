@@ -1,0 +1,2 @@
+module GuessWhoQuestionsHelper
+end

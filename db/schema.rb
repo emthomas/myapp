@@ -11,7 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150224051310) do
+ActiveRecord::Schema.define(version: 20150304041557) do
+
+  create_table "guess_who_questions", force: :cascade do |t|
+    t.string   "question",   limit: 255
+    t.string   "answer",     limit: 255
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  create_table "guess_who_user_answers", force: :cascade do |t|
+    t.integer  "guess_who_question_id", limit: 4
+    t.integer  "user_id",               limit: 4
+    t.string   "answer",                limit: 255
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+  end
+
+  add_index "guess_who_user_answers", ["guess_who_question_id"], name: "fk_rails_83adc8c345", using: :btree
+  add_index "guess_who_user_answers", ["user_id"], name: "index_guess_who_user_answers_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string "name", limit: 255
@@ -39,4 +57,6 @@ ActiveRecord::Schema.define(version: 20150224051310) do
   add_index "users", ["last_name", "first_name"], name: "index_users_on_last_first", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
+  add_foreign_key "guess_who_user_answers", "guess_who_questions"
+  add_foreign_key "guess_who_user_answers", "users"
 end

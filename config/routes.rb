@@ -20,6 +20,12 @@ Rails.application.routes.draw do
   	end
   end
   
+  resources :guess_who_questions do
+  	member do
+  		get :save_user_answer
+  	end
+  end
+  
   resources :account_activations, only: [:edit]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
