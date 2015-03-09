@@ -4,7 +4,15 @@ module StaticPagesHelper
     today = Date.today
     wedding_date = Date.new(2015,7,30)
     days = (wedding_date - today).to_i
-    "#{days} days until We Become One!!!"
+  end
+  
+  def can_rsvp?
+  	 get_days_left <= 90
+  end
+  
+  def get_rsvp_date
+  	 wedding_date = Date.new(2015,7,30)
+  	 rsvp_date = (wedding_date - 90)
   end
   
   def get_rsvp(option)

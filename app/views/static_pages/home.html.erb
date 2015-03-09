@@ -3,11 +3,30 @@
   <h1>Welcome to Sam & Seb's Website</h1>
 
   <h2>
+  
   </h2>
   <% if logged_in? %>
   <%= link_to "Wedding Info", wedding_path, class: "btn btn-lg btn-primary" %>
+  <% if current_user.admin? %>
+  <%= link_to "Our Story", our_story_path, class: "btn btn-lg btn-primary" %>
   <% end %>
+  <p>
+  </p>
   
-	<%= image_tag(random_pic, :height => "auto", :width => "100%", alt: random_pic) %>
+  <p>
+  Hi <%= current_user.first_name %>,<br>
+  <br>
+  Once again thank you for being a part of our lives.<br>
+  We are really excited about our upcoming big day and having you with us.<br>
+  As we getting closer to the date, we will be updating the site.<br>
+  Hence please don't forget to come back to participate in all the fun we have in store.<br>
+  <br>
+  Love,<br>
+  Sam & Seb
+  </p>
   
+  <% end %>
+</div>
+<div class="center jumbotron">  
+	<%= image_tag(random_pic, :height => "auto", :width => "75%", alt: random_pic) %>
 </div>

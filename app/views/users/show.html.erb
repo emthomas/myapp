@@ -10,6 +10,7 @@
   </aside>
 </div>
 
+<% if logged_in_admin? %>
 <div>
 Welcome message will be here
 </div>
@@ -19,3 +20,10 @@ Add questions for the guest to interact
 <div>
 Add the list of games (maybe)
 </div>
+<% else %>
+<div>
+Welcome <%= @user.first_name %>. Thank you for considering coming to our wedding! We are all excited!<br>
+Please stay tuned for more info and fun!!!<br>
+Sam & Seb
+</div>
+<% end %>

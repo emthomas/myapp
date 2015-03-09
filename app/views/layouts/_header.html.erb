@@ -4,7 +4,6 @@
         <nav>
           	<ul class="nav navbar-nav navbar-right">
             	<li><%= link_to "Home", root_path %></li>
-            	<!--<li><%= link_to "About", '#' %></li>-->
             	<% if logged_in? %>
             		<% if current_user.admin? %>
           				<li><%= link_to "Guests", users_path %></li>

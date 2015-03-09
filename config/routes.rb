@@ -1,13 +1,14 @@
 Rails.application.routes.draw do
 
   root               		'static_pages#home'
-  get 		'home'    => 	'static_pages#home'
-  get 		'about'   =>   	'static_pages#about'
-  get		'wedding' =>   	'static_pages#wedding'
-  get		'signup'  =>	'users#new'
-  get    	'login'   => 	'sessions#new'
-  post   	'login'   => 	'sessions#create'
-  delete 	'logout'  => 	'sessions#destroy'
+  get 		'home'    	=> 	'static_pages#home'
+  get 		'about'   	=>  'static_pages#about'
+  get		'wedding' 	=>  'static_pages#wedding'
+  get		'our_story' =>  'static_pages#our_story'
+  get		'signup'  	=>	'users#new'
+  get    	'login'   	=> 	'sessions#new'
+  post   	'login'   	=> 	'sessions#create'
+  delete 	'logout'  	=> 	'sessions#destroy'
   
   resources :users do
   	member do
