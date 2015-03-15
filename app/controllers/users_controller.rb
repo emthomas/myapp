@@ -48,6 +48,8 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @family = Family.find(@user.family_id) unless @user.family_id.nil?
+    @user.family = @family.family_name unless @family.nil?
   end
   
   # Activate a user in the database
@@ -98,7 +100,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      #flash[:success] = "Profile updated"
+      flash[:success] = user_params
       if logged_in_admin?
       	 redirect_to users_path
       else
@@ -110,7 +113,9 @@ class UsersController < ApplicationController
   end
   
   def index
-       @users = User.where(params[:address_param])
+       @users = User.joins("LEFT OUTER JOIN families on families.id = users.family_id")
+       				.select("users.*, families.family_name")
+       				.where(params[:address_param])
                     .where(params[:email_param])
                     .where(params[:admin_param])
                     .where(params[:invited_param])

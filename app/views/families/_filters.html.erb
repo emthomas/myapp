@@ -1,0 +1,19 @@
+<div class="filters" >
+<%= form_tag(families_path, method: "get") do %>
+<table>
+<tr>
+    <th><%= label_tag(:sort_by, "Sort By:") %></th>
+    <th><%= label_tag(:sort_direction, "Direction:") %></th>
+</tr>
+<tr>
+	<td><%= select_tag(:by, options_for_select([['Name', 'family_name'], ['Count', 'member_count']]) )%></td>
+	<td><%= select_tag(:dir, options_for_select([['Asc', 'ASC'], ['Desc', 'DESC']]) )%></td>
+</tr>
+<tr>
+	<td></td>
+	<td><%= submit_tag("Apply Filters") %></td>
+</tr>
+</table>
+
+<% end %>
+</div>

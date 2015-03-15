@@ -1,0 +1,30 @@
+<% provide(:title, 'Families') %>
+<div class="center jumbotron">
+	<h1>All Families</h1>
+</div>
+
+<div>
+<%= render 'filters' %>
+</div>
+
+<div>
+<%= will_paginate %>
+<table>
+<tr>
+    <th>Name</th>
+    <th>Count</th>
+  	<th>Actions</th>
+</tr>
+<%= form_tag(new_family_path, method: "get") do %>
+<tr>  
+  <td><%= text_field_tag :family_name, '', size: 15 %></td>
+  <td></td>
+  <td><%= submit_tag "add family" %></td>
+</tr>
+<% end %>
+<%= render @families %>
+</table>
+<%= will_paginate %>
+</div>
+
+

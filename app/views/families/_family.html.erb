@@ -1,0 +1,8 @@
+<tr>
+<td><%= link_to family.family_name, family %></td>
+<td><%= family.member_count %></td>
+<td><ul>
+	<li><%= link_to "delete", family, method: :delete, data: { confirm: "You sure?" } %></li>
+     </ul>
+</td>
+</tr>

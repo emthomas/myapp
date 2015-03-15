@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token
   attr_accessor :activation_token
   attr_accessor :view_as_guest
+  attr_accessor :family
   
   before_save do 
   	self.email = email.downcase if !email.nil?

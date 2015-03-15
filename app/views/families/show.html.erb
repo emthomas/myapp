@@ -1,0 +1,29 @@
+<% provide(:title, @family.family_name) %>
+<div class="row">
+  <aside class="col-md-4">
+    <section class="user_info">
+      <h1>
+        <%= @family.family_name %>
+      </h1>
+    </section>
+  </aside>
+</div>
+
+<div>
+<table>
+<tr>
+    <th>Full Name</th>
+    <th>Username</th>
+    <th>Email</th>
+    <th>Address</th>
+    <th>Family</th>
+    <% if current_user.admin? %>
+       <th>Admin</th>
+       <th>Invited</th>
+       <th>Is Coming</th>
+    <% end %>		
+    <th>Actions</th>
+</tr>
+	<%= render @family_members %>
+</table>
+</div>

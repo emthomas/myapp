@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150304041557) do
+ActiveRecord::Schema.define(version: 20150311044804) do
+
+  create_table "families", force: :cascade do |t|
+    t.string   "family_name",  limit: 255
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "member_count", limit: 4
+  end
+
+  add_index "families", ["family_name"], name: "index_families_on_family_name", unique: true, using: :btree
 
   create_table "guess_who_questions", force: :cascade do |t|
     t.string   "question",   limit: 255
@@ -51,12 +60,15 @@ ActiveRecord::Schema.define(version: 20150304041557) do
     t.string   "activation_digest", limit: 255
     t.boolean  "activated",         limit: 1,   default: false
     t.datetime "activated_at"
+    t.integer  "family_id",         limit: 4
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
+  add_index "users", ["family_id"], name: "index_users_on_family_id", using: :btree
   add_index "users", ["last_name", "first_name"], name: "index_users_on_last_first", unique: true, using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "guess_who_user_answers", "guess_who_questions"
   add_foreign_key "guess_who_user_answers", "users"
+  add_foreign_key "users", "families"
 end

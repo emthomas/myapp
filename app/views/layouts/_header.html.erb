@@ -7,6 +7,7 @@
             	<% if logged_in? %>
             		<% if current_user.admin? %>
           				<li><%= link_to "Guests", users_path %></li>
+          				<li><%= link_to "Families", families_path %></li>
   					<% end %>
   					<% if current_user.admin? %>
           				<li class="dropdown">

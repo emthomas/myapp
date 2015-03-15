@@ -20,6 +20,9 @@
 	
 	  <%= f.label :address %>
       <%= f.text_field :address, class: 'form-control' %>
+      
+      <%= f.label :family %>
+      <%= f.collection_select(:family_id, Family.all.order(:family_name), :id, :family_name) %>
 
       <%= f.label :password %>
       <%= f.password_field :password, class: 'form-control' %>
