@@ -8,7 +8,22 @@ class UsersController < ApplicationController
   end
 
   def new
-    @user = User.new
+    if params[:commit]
+    	@user = User.create(first_name: params[:first_name], 
+							last_name: params[:last_name],
+							password: "password", 
+							password_confirmation: "password")
+							
+    	if @user.save
+  			flash[:success] = @user.first_name+" was Added"
+  		else
+  			flash[:danger] = "There was an error"
+  		end
+  		
+  		redirect_to users_path
+    else
+    	@user = User.new
+    end
   end
   
   def create
@@ -33,6 +48,8 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
+    @family = Family.find(@user.family_id) unless @user.family_id.nil?
+    @user.family = @family.family_name unless @family.nil?
   end
   
   # Activate a user in the database
@@ -83,7 +100,8 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "Profile updated"
+      #flash[:success] = "Profile updated"
+      flash[:success] = user_params
       if logged_in_admin?
       	 redirect_to users_path
       else
@@ -95,11 +113,14 @@ class UsersController < ApplicationController
   end
   
   def index
-       @users = User.where(params[:address_param])
+       @users = User.joins("LEFT OUTER JOIN families on families.id = users.family_id")
+       				.select("users.*, families.family_name")
+       				.where(params[:address_param])
                     .where(params[:email_param])
                     .where(params[:admin_param])
                     .where(params[:invited_param])
                     .where(params[:is_coming_param])
+                    .where("LOWER(first_name) LIKE '%#{params[:name_filter_param]}%' OR LOWER(last_name) LIKE '%#{params[:name_filter_param]}%'")
                     .order(:last_name)
                     .paginate(page: params[:page])
   end
@@ -121,23 +142,4 @@ class UsersController < ApplicationController
     
     # Before filters
 
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        store_location
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
-    end
-    
-    # Confirms the correct user.
-    def correct_user
-      @user = User.find(params[:id])
-      redirect_to(root_url) unless ( current_user?(@user) || (logged_in? && current_user.admin?))
-    end
-    
-    # Confirms an admin user.
-    def admin_user
-      redirect_to(root_url) unless (logged_in? && current_user.admin?)
-    end
 end

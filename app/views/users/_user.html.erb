@@ -3,6 +3,7 @@
 <td><%= user.username %></td>
 <td><%= user.email %></td>
 <td><%= user.address %></td>
+<td><%= link_to user.family_name, Family.find(user.family_id) %></td>
 <% if current_user.admin? %>
 <td><%= user.admin %></td>
 <td><%= user.invited %></td>

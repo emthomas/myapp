@@ -1,6 +1,8 @@
 class User < ActiveRecord::Base
   attr_accessor :remember_token
   attr_accessor :activation_token
+  attr_accessor :view_as_guest
+  attr_accessor :family
   
   before_save do 
   	self.email = email.downcase if !email.nil?
@@ -76,8 +78,19 @@ class User < ActiveRecord::Base
     UserMailer.account_activation(self).deliver_now
   end
   
+  def view_as_guest?
+	  if self.view_as_guest.nil?
+		self.view_as_guest = true
+	  end
+	  return self.view_as_guest
+  end
+  
+  def set_view_as_guest(option)
+  	self.view_as_guest = option
+  end
+  	
   private
-
+	
     # Converts email to all lower-case.
     def downcase_email
       self.email = email.downcase unless email.nil?

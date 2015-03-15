@@ -14,5 +14,5 @@ module ApplicationHelper
     num = 1 + rand(12)
     "pic_#{num}.jpeg"
   end
-
+  
 end

@@ -1,0 +1,37 @@
+<% provide(:title, 'Guess Who Questions') %>
+<div class="center jumbotron">
+	<h1>Guess Who Questions</h1>
+</div>
+
+<div>
+</div>
+
+<%= will_paginate %>
+
+<table>
+<tr>
+    <th>Question</th>
+    <% if current_user.admin?%>
+    <th>Right Answer</th>	
+    <% end %>
+    <th>Answer</th>
+    <th>Choices</th>
+    <% if current_user.admin?%>	
+    <th>Actions</th>
+</tr>
+<%= form_tag(new_guess_who_question_path, method: "get") do %>
+<tr>  
+  <td><%= text_field_tag :question, '', size: 75 %></td>
+  <td><%= select_tag(:answer, options_for_select([['Seb', 'seb'], ['Sam', 'sam']]) )%></td>
+  <td></td>
+  <td></td>
+  <td><%= submit_tag "add" %></td>
+</tr>
+<% end %>
+
+    <% end %>
+  <%= render @guess_who_questions %>
+  
+</table>
+
+<%= will_paginate %>

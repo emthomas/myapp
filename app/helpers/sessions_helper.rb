@@ -1,4 +1,5 @@
 module SessionsHelper
+    
   # Returns true in the given user is an logged in admin
   def logged_in_admin?
       logged_in? && current_user.admin

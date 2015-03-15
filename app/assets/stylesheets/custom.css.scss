@@ -265,3 +265,18 @@ th, td {
     text-align: left;
     font-size: 1.3em;
 }
+
+#left_section {
+	overflow: auto;
+    line-height:30px;
+    background-color:#eeeeee;
+    width:40%;
+    height:600px;
+    float:left;
+    padding:5px;	      
+}
+#right_section {
+    width:60%;
+    float:left;
+    padding:10px;	 	 
+}
