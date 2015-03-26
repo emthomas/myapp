@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   		get :uninvite
   		get :iscoming
   		get :isnotcoming
+  		get :set_is_not_adult
+  		get :set_is_adult
   	end
   end
   

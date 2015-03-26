@@ -48,8 +48,6 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
-    @family = Family.find(@user.family_id) unless @user.family_id.nil?
-    @user.family = @family.family_name unless @family.nil?
   end
   
   # Activate a user in the database
@@ -63,6 +61,20 @@ class UsersController < ApplicationController
   def deactivate
     @user = User.find(params[:id])
     @user.deactivate
+    redirect_to users_url
+  end
+  
+  # Activate a user in the database
+  def set_is_adult
+    @user = User.find(params[:id])
+    @user.set_is_adult
+    redirect_to users_url
+  end
+  
+  # Activate a user in the database
+  def set_is_not_adult
+    @user = User.find(params[:id])
+    @user.set_is_not_adult
     redirect_to users_url
   end
   
@@ -90,7 +102,6 @@ class UsersController < ApplicationController
     redirect_to users_url
   end
   
-  
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
@@ -100,8 +111,7 @@ class UsersController < ApplicationController
   def update
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      #flash[:success] = "Profile updated"
-      flash[:success] = user_params
+      flash[:success] = "#{@user.first_name}'s profile updated"
       if logged_in_admin?
       	 redirect_to users_path
       else
@@ -120,6 +130,7 @@ class UsersController < ApplicationController
                     .where(params[:admin_param])
                     .where(params[:invited_param])
                     .where(params[:is_coming_param])
+                    .where(params[:is_adult_param])
                     .where("LOWER(first_name) LIKE '%#{params[:name_filter_param]}%' OR LOWER(last_name) LIKE '%#{params[:name_filter_param]}%'")
                     .order(:last_name)
                     .paginate(page: params[:page])

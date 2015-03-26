@@ -4,6 +4,8 @@
 	<h3>We now have <%= User.count %> guests!!!</h3>
 	<h3><%= User.where(invited: true).count %> guests will be invited!!!</h3>
 	<h3><%= User.where(is_coming: true).count %> guests are coming!!!</h3>
+	<h3><%= User.where(is_adult: true).count %> guests are adults!!!</h3>
+	<h3><%= User.where(is_adult: false).count %> guests are children or vendors!!!</h3>
 	<%= link_to "Add guest!", signup_path , class: "btn btn-lg btn-primary" %>
 </div>
 
@@ -13,23 +15,6 @@
 </div>
 
 <%= will_paginate %>
-
-<table>
-<tr>
-    <th>First Name</th>
-    <th>Last Name</th>
-    <th>Family</th>	
-    <th>Actions</th>
-</tr>
-<%= form_tag(new_user_path, method: "get") do %>
-<tr>  
-  <td><%= text_field_tag :first_name, '', size: 15 %></td>
-  <td><%= text_field_tag :last_name, '', size: 15 %></td>
-  <td><%= collection_select(:family, :family_id, Family.all.order(:family_name), :id, :family_name) %></td>
-  <td><%= submit_tag "add guest" %></td>
-</tr>
-<% end %>
-</table>
 
 <table>
 <tr>

@@ -2,7 +2,6 @@ class User < ActiveRecord::Base
   attr_accessor :remember_token
   attr_accessor :activation_token
   attr_accessor :view_as_guest
-  attr_accessor :family
   
   before_save do 
   	self.email = email.downcase if !email.nil?
@@ -71,6 +70,14 @@ class User < ActiveRecord::Base
   def deactivate
     update_attribute(:activated, false)
     update_attribute(:activated_at, Time.zone.now)
+  end
+  
+  def set_is_adult
+    update_attribute(:is_adult, true)
+  end
+  
+  def set_is_not_adult
+    update_attribute(:is_adult, false)
   end
 
   # Sends activation email.

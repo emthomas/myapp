@@ -3,7 +3,10 @@
 <td><%= user.username %></td>
 <td><%= user.email %></td>
 <td><%= user.address %></td>
-<td><%= link_to user.family_name, Family.find(user.family_id) %></td>
+<td><% if !user.family_id.nil? %>
+    <%= link_to user.family_name, Family.find(user.family_id) %>
+    <% end %>
+</td>
 <% if current_user.admin? %>
 <td><%= user.admin %></td>
 <td><%= user.invited %></td>
@@ -35,6 +38,14 @@
      			 	<%= link_to "is not coming", isnotcoming_user_path(user) %>
      			<% else %>
      			 	<%= link_to "is coming", iscoming_user_path(user) %>
+     			<% end %>
+     		</li>
+     		
+     		<li>
+     			<% if user.is_adult? %>
+     			 	<%= link_to "is kid or vendor", set_is_not_adult_user_path(user) %>
+     			<% else %>
+     			 	<%= link_to "is adult", set_is_adult_user_path(user) %>
      			<% end %>
      		</li>
      		

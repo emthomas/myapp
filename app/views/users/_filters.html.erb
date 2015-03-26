@@ -8,6 +8,7 @@
     <th><%= label_tag(:admin_param, "Admin:") %></th>
     <th><%= label_tag(:invited_param, "Invited:") %></th>
     <th><%= label_tag(:is_coming_param, "Is Coming:") %></th>
+    <th><%= label_tag(:is_adult_param, "Is Adult:") %></th>
 </tr>
 <tr>
 	<td><%= text_field_tag :name_filter_param %></td>
@@ -16,6 +17,7 @@
 	<td><%= select_tag(:admin_param, options_for_select([['All', ''], ['Yes', 'admin = 1'], ['No', 'admin = 0']]) )%></td>
 	<td><%= select_tag(:invited_param, options_for_select([['All', ''], ['Yes', 'invited = 1'], ['No', 'invited = 0']]) )%></td>
 	<td><%= select_tag(:is_coming_param, options_for_select([['All', ''], ['Yes', 'is_coming = 1'], ['No', 'is_coming = 0']]) )%></td>
+	<td><%= select_tag(:is_adult_param, options_for_select([['All', ''], ['Yes', 'is_adult = 1'], ['No', 'is_adult = 0']]) )%></td>
 </tr>
 </table>
 <%= submit_tag("Apply Filters") %>

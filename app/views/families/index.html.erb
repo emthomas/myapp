@@ -9,19 +9,27 @@
 
 <div>
 <%= will_paginate %>
+
+<table>
+<tr>
+    <th>Family Name</th>
+    <th>Actions</th>
+</tr>
+<%= form_for(@family=Family.new) do |f| %>
+      <%= render 'shared/error_messages_family' %>
+<tr>  
+  <td><%= f.text_field :family_name, size: 15 %></td>
+  <td><%= f.submit "add family" %></td>
+</tr>
+<% end %>
+</table>
+
 <table>
 <tr>
     <th>Name</th>
     <th>Count</th>
   	<th>Actions</th>
 </tr>
-<%= form_tag(new_family_path, method: "get") do %>
-<tr>  
-  <td><%= text_field_tag :family_name, '', size: 15 %></td>
-  <td></td>
-  <td><%= submit_tag "add family" %></td>
-</tr>
-<% end %>
 <%= render @families %>
 </table>
 <%= will_paginate %>

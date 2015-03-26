@@ -1,11 +1,42 @@
 class FamiliesController < ApplicationController
   def new
+    if params[:commit]
+    	@family = Family.create(family_name: params[:family_name])
+							
+    	if @family.save
+  			flash[:success] = @family.family_name+" was Added"
+  		else
+  			flash[:danger] = "There was an error"
+  		end
+  		
+  		redirect_to families_path
+    else
+    	@family = Family.new
+    end
   end
 
   def create
+    @family = Family.new(family_params)    # Not the final implementation!
+    if @family.save 
+      if logged_in_admin?
+        flash[:success] = "#{@family.family_name} Created"
+    	redirect_to families_path
+      else 
+      	redirect_to root_url
+      end
+    else
+      render 'new'
+    end
   end
 
   def update
+    @family = Family.find(params[:id])
+    if @family.update_attributes(family_params)
+      flash[:success] = "#{@family.family_name}'s family updated"
+      redirect_to families_path
+    else
+      render 'edit'
+    end
   end
 
   def index
@@ -39,4 +70,14 @@ class FamiliesController < ApplicationController
                     	  .order(:last_name)
                     	  #.paginate(page: params[:page])
   end
+  
+  def edit
+    @family = Family.find(params[:id])
+  end
+  
+  private
+
+    def family_params
+     params.require(:family).permit!
+    end
 end

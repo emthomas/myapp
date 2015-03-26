@@ -3,6 +3,7 @@
 <td><%= family.member_count %></td>
 <td><ul>
 	<li><%= link_to "delete", family, method: :delete, data: { confirm: "You sure?" } %></li>
+	<li><%= link_to "edit", edit_family_path(family) %></li>
      </ul>
 </td>
 </tr>

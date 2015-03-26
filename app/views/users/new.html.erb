@@ -24,6 +24,9 @@
       <%= f.label :password_confirmation, "Confirmation" %>
       <%= f.password_field :password_confirmation, :value => 'password',  class: 'form-control' %>
       
+      <%= f.label :family %>
+      <%= f.collection_select(:family_id, Family.all.order(:family_name), :id, :family_name) %>
+      
       <% if current_user.admin? %>
         <%= f.label :admin %>
         <%= f.check_box :admin, class: 'form-control' %>
