@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update, :show]
-  before_action :admin_user,	 only: [:index, :destroy, :edit, :update]
+  before_action :admin_user,	 only: [:index, :destroy, :update, :show]
   
   def show
     @user = User.find(params[:id])
@@ -54,58 +54,59 @@ class UsersController < ApplicationController
   def activate
     @user = User.find(params[:id])
     @user.activate
-    redirect_to users_url
+    redirect_to :back
   end
   
   # Activate a user in the database
   def deactivate
     @user = User.find(params[:id])
     @user.deactivate
-    redirect_to users_url
+    redirect_to :back
   end
   
   # Activate a user in the database
   def set_is_adult
     @user = User.find(params[:id])
     @user.set_is_adult
-    redirect_to users_url
+    redirect_to :back
   end
   
   # Activate a user in the database
   def set_is_not_adult
     @user = User.find(params[:id])
     @user.set_is_not_adult
-    redirect_to users_url
+    redirect_to :back
   end
   
   def invite
   	@user = User.find(params[:id])
     @user.update_attribute(:invited, true)
-    redirect_to users_url
+    redirect_to :back
   end
   
   def uninvite
   	@user = User.find(params[:id])
     @user.update_attribute(:invited, false)
-    redirect_to users_url
+    redirect_to :back
   end
   
   def iscoming
   	@user = User.find(params[:id])
     @user.update_attribute(:is_coming, true)
-    redirect_to users_url
+    flash[:success] = params
+    redirect_to :back
   end
   
   def isnotcoming
   	@user = User.find(params[:id])
     @user.update_attribute(:is_coming, false)
-    redirect_to users_url
+    redirect_to :back
   end
   
   def destroy
     User.find(params[:id]).destroy
     flash[:success] = "User deleted"
-    redirect_to users_url
+    redirect_to :back
   end
   
   def update
