@@ -55,6 +55,10 @@ class User < ActiveRecord::Base
     BCrypt::Password.new(digest).is_password?(token)
   end
   
+  def has_default_pass?
+  	return self.authenticate('password') == self
+  end
+  
   # Forgets a user.
   def forget
     update_attribute(:remember_digest, nil)
@@ -70,6 +74,10 @@ class User < ActiveRecord::Base
   def deactivate
     update_attribute(:activated, false)
     update_attribute(:activated_at, Time.zone.now)
+    self.password = "password"
+    self.password_confirmation = "password"
+    self.save
+    
   end
   
   def set_is_adult

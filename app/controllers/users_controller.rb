@@ -1,7 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update, :show]
-  before_action :admin_user,	 only: [:index, :destroy, :update, :show]
+  before_action :admin_user,	 only: [:index, :destroy, :show]
   
   def show
     @user = User.find(params[:id])
@@ -110,13 +110,20 @@ class UsersController < ApplicationController
   end
   
   def update
+  	flash[:danger] = "Please change your password."
     @user = User.find(params[:id])
     if @user.update_attributes(user_params)
-      flash[:success] = "#{@user.first_name}'s profile updated"
       if logged_in_admin?
+      	 flash[:success] = "#{@user.first_name}'s profile updated"
       	 redirect_to users_path
       else
-         redirect_to @user
+    	 if @user.has_default_pass?
+    	 	flash[:danger] = "Please change your password."
+    	 	render 'edit'
+    	 else
+    	 	@user.activate
+            redirect_to @user
+         end
       end 
     else
       render 'edit'
@@ -130,6 +137,7 @@ class UsersController < ApplicationController
                     .where(params[:email_param])
                     .where(params[:admin_param])
                     .where(params[:invited_param])
+                    .where(params[:activated_param])
                     .where(params[:is_coming_param])
                     .where(params[:is_adult_param])
                     .where("LOWER(first_name) LIKE '%#{params[:name_filter_param]}%' OR LOWER(last_name) LIKE '%#{params[:name_filter_param]}%'")

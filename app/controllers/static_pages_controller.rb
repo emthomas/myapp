@@ -9,6 +9,10 @@ class StaticPagesController < ApplicationController
   def about
   end
   
+  def contact_us
+  	contact_us_path
+  end
+  
   def wedding
     if params[:commit]
   	  current_user.update_attribute(:is_coming, get_rsvp(params[:commit]))
