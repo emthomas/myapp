@@ -1,9 +1,7 @@
 class SessionsController < ApplicationController
+  skip_before_action :log_user_out, only: [:create]
 
   def new
-    message  = "Username: lastname.firstname. Ex: Louis.Samantha ==> "
- 	message += "Password: the default is your birthday. Ex: 1988-31-08"
-  	flash[:warning] = message
   end
 
 	def create

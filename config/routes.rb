@@ -32,6 +32,13 @@ Rails.application.routes.draw do
   
   resources :families
   
+  resources :messages do
+  	member do
+  		get :mark_as_read
+  		get :mark_as_unread
+  	end
+  end
+  
   resources :account_activations, only: [:edit]
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".

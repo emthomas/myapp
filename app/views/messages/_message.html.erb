@@ -1,0 +1,14 @@
+<tr>
+<td><%= message.first_name %></td>
+<td><%= message.last_name %></td>
+<td><%= message.created_at.in_time_zone("Eastern Time (US & Canada)").strftime("%Y-%m-%d %H:%M:%S %Z") %></td>
+<td><%= message.subject %></td>
+<td><%= message.body %></td>
+<td><%= link_to "delete", message, method: :delete, data: { confirm: "You sure?" } %> |
+	<% if message.new_message? %>
+		<%= link_to "mark as read", mark_as_read_message_path(message) %>
+	<% else %>
+		<%= link_to "mark as unread", mark_as_unread_message_path(message) %>
+	<% end %>
+</td>
+</tr>

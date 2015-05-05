@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150326130627) do
+ActiveRecord::Schema.define(version: 20150424014024) do
 
   create_table "families", force: :cascade do |t|
     t.string   "family_name",  limit: 255
@@ -39,6 +39,20 @@ ActiveRecord::Schema.define(version: 20150326130627) do
 
   add_index "guess_who_user_answers", ["guess_who_question_id"], name: "fk_rails_83adc8c345", using: :btree
   add_index "guess_who_user_answers", ["user_id"], name: "index_guess_who_user_answers_on_user_id", using: :btree
+
+  create_table "messages", force: :cascade do |t|
+    t.string   "subject",     limit: 255
+    t.text     "body",        limit: 65535
+    t.integer  "user_id",     limit: 4
+    t.boolean  "new_message", limit: 1
+    t.datetime "created_at",                null: false
+    t.datetime "updated_at",                null: false
+    t.string   "first_name",  limit: 255
+    t.string   "last_name",   limit: 255
+  end
+
+  add_index "messages", ["new_message"], name: "index_messages_on_new_message", using: :btree
+  add_index "messages", ["user_id"], name: "index_messages_on_user_id", using: :btree
 
   create_table "roles", force: :cascade do |t|
     t.string "name", limit: 255
@@ -71,5 +85,6 @@ ActiveRecord::Schema.define(version: 20150326130627) do
 
   add_foreign_key "guess_who_user_answers", "guess_who_questions"
   add_foreign_key "guess_who_user_answers", "users"
+  add_foreign_key "messages", "users"
   add_foreign_key "users", "families"
 end
