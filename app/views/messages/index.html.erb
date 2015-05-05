@@ -1,0 +1,26 @@
+<% provide(:title, 'Messages') %>
+<div class="center jumbotron">
+	<h1>All Messages</h1>
+</div>
+
+<div>
+</div>
+
+<div>
+<%= will_paginate %>
+
+<table>
+<tr>
+    <th>First Name</th>
+    <th>Last Name</th>
+    <th>Time</th>
+  	<th>Subject</th>
+  	<th>Message</th>
+  	<th></th>
+</tr>
+<%= render @messages %>
+</table>
+<%= will_paginate %>
+</div>
+
+

@@ -28,3 +28,18 @@
 	<% end %>
 <% end %>
 
+<% if !@message.nil?%>
+	<% if @message.errors.any? %>
+	  <div id="error_explanation">
+		<div class="alert alert-danger">
+		  The form contains <%= pluralize(@message.errors.count, "error") %>.
+		</div>
+		<ul>
+		<% @message.errors.full_messages.each do |msg| %>
+		  <li><%= msg %></li>
+		<% end %>
+		</ul>
+	  </div>
+	<% end %>
+<% end %>
+

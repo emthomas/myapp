@@ -4,6 +4,14 @@ class ApplicationController < ActionController::Base
   
   protect_from_forgery with: :exception
   include SessionsHelper
+  
+  before_action :log_user_out
+  
+  def log_user_out
+  	if logged_in? && current_user.has_default_pass?
+  	   log_out
+  	end
+  end
 
    # Confirms a logged-in user.
     def logged_in_user

@@ -3,6 +3,8 @@ class UsersController < ApplicationController
   before_action :correct_user,   only: [:edit, :update, :show]
   before_action :admin_user,	 only: [:index, :destroy, :show]
   
+  skip_before_action :log_user_out, only: [:edit, :update]
+  
   def show
     @user = User.find(params[:id])
   end
@@ -118,7 +120,7 @@ class UsersController < ApplicationController
       	 redirect_to users_path
       else
     	 if @user.has_default_pass?
-    	 	flash[:danger] = "Please change your password."
+    	 	flash.now[:danger] = 'Please change your password!'
     	 	render 'edit'
     	 else
     	 	@user.activate
