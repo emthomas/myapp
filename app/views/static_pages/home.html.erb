@@ -7,7 +7,7 @@
   </h2>
   <% if logged_in? %>
   <%= link_to "Wedding Info", wedding_path, class: "btn btn-lg btn-primary" %>
-  <%= link_to "Guess Who!", guess_who_questions_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "Guess Who! (#{current_user.get_answered_questions_count}/#{guess_who_questions_count} answered)", guess_who_questions_path, class: "btn btn-lg btn-primary" %>
   <% if current_user.admin? %>
   <%= link_to "Our Story", our_story_path, class: "btn btn-lg btn-primary" %>
   <% end %>

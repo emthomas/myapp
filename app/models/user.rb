@@ -86,6 +86,10 @@ class User < ActiveRecord::Base
        update_attribute(:last_login, Date.today)
     end
   end
+
+  def get_answered_questions_count
+    GuessWhoUserAnswer.where(:user_id => self.id).count
+  end
   
   def set_is_adult
     update_attribute(:is_adult, true)

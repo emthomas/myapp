@@ -14,5 +14,9 @@ module ApplicationHelper
     num = 1 + rand(12)
     "pic_#{num}.jpeg"
   end
+
+  def guess_who_questions_count
+     GuessWhoQuestion.count
+  end
   
 end
