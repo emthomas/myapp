@@ -30,14 +30,14 @@
   	<p>
   	Please log in or <%= link_to "contact us", new_message_path %> to see more.
     </p>
-  <% end %>
-
+  
   <h2 style="color:red">Breaking News!!!</h2>
   <p>
   <ul>
      <li>- The more you stalk our website, the better your chances to win. So make sure you come back daily ;). You have <%= current_user.logins %> login points so far!!!</li>
   </ul>
   </p>
+<% end %>
 </div>
 <div class="center jumbotron">  
 	<%= image_tag(random_pic, :height => "auto", :width => "75%", alt: random_pic) %>
