@@ -23,7 +23,10 @@ class SessionsController < ApplicationController
 					redirect_back_or edit_user_path(current_user)
 				end
 			end
-		end
+		else 
+                      flash[:danger] = "Invalid username"
+                      redirect_back_or login_url
+                end
 	end
 
   def destroy
