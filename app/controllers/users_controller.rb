@@ -134,8 +134,8 @@ class UsersController < ApplicationController
   
   def index
        @users = User.joins("LEFT OUTER JOIN families on families.id = users.family_id")
-       				.select("users.*, families.family_name")
-       				.where(params[:address_param])
+       		    .select("users.*, families.family_name")
+       		    .where(params[:address_param])
                     .where(params[:email_param])
                     .where(params[:admin_param])
                     .where(params[:invited_param])
