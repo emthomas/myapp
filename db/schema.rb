@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150424014024) do
+ActiveRecord::Schema.define(version: 20150708142928) do
 
   create_table "families", force: :cascade do |t|
     t.string   "family_name",  limit: 255
@@ -76,6 +76,8 @@ ActiveRecord::Schema.define(version: 20150424014024) do
     t.datetime "activated_at"
     t.integer  "family_id",         limit: 4
     t.boolean  "is_adult",          limit: 1,   default: true
+    t.integer  "logins",            limit: 4,   default: 0
+    t.date     "last_login"
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree

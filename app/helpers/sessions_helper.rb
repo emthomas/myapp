@@ -8,6 +8,7 @@ module SessionsHelper
   # Logs in the given user.
   def log_in(user)
     session[:user_id] = user.id
+    user.increment_login 
   end
   
   # Remembers a user in a persistent session.
