@@ -72,6 +72,12 @@ class UsersController < ApplicationController
     @user.set_is_adult
     redirect_to :back
   end
+
+  def untable
+    @user = User.find(params[:id])
+    @user.untable
+    redirect_to :back
+  end
   
   # Activate a user in the database
   def set_is_not_adult
@@ -145,6 +151,8 @@ class UsersController < ApplicationController
                     .where("LOWER(first_name) LIKE '%#{params[:name_filter_param]}%' OR LOWER(last_name) LIKE '%#{params[:name_filter_param]}%'")
                     .order(:last_name)
                     .paginate(page: params[:page])
+
+       @available_tables = Table.joins("LEFT OUTER JOIN users on users.table_id = tables.id").group(:number).having("count(*)<max(capacity)")
   end
   
   private

@@ -9,7 +9,15 @@
 </td>
 <% if current_user.admin? %>
 <td><%= user.logins %></td>
-<td><%= user.is_coming %></td>
+<td><%= user.get_table %></td>
+<% if !user.is_coming %>
+  <td></td>
+<% else %>
+  <td><% @available_tables.each do |table| %>
+    <%= link_to "#{table.number}", [:add_user, user, table] %>  
+  <% end %>
+  </td>
+<% end %>
 <td><%= "#{user.get_guess_who_right_answers_count}/#{user.get_answered_questions_count}" %></td>
 <% end %> 
 <td> 
@@ -49,6 +57,10 @@
      			<% end %>
      		</li>
      		
+     			<% if user.table %><li>
+
+     			 	<%= link_to "remove from table", untable_user_path(user) %>
+     			</li><% end %>
      	<% if current_user.admin? && !current_user?(user) %>
    			<li><%= link_to "delete", user, method: :delete, data: { confirm: "You sure?" } %></li>
      	<% end %>

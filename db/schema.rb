@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708142928) do
+ActiveRecord::Schema.define(version: 20150709161659) do
 
   create_table "families", force: :cascade do |t|
     t.string   "family_name",  limit: 255
@@ -58,6 +58,15 @@ ActiveRecord::Schema.define(version: 20150708142928) do
     t.string "name", limit: 255
   end
 
+  create_table "tables", force: :cascade do |t|
+    t.integer  "number",     limit: 4,              null: false
+    t.datetime "created_at",                        null: false
+    t.datetime "updated_at",                        null: false
+    t.integer  "capacity",   limit: 4, default: 15
+  end
+
+  add_index "tables", ["number"], name: "index_tables_on_number", unique: true, using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "first_name",        limit: 50
     t.string   "last_name",         limit: 50
@@ -78,15 +87,18 @@ ActiveRecord::Schema.define(version: 20150708142928) do
     t.boolean  "is_adult",          limit: 1,   default: true
     t.integer  "logins",            limit: 4,   default: 0
     t.date     "last_login"
+    t.integer  "table_id",          limit: 4,   default: -1
   end
 
   add_index "users", ["email"], name: "index_users_on_email", using: :btree
   add_index "users", ["family_id"], name: "index_users_on_family_id", using: :btree
   add_index "users", ["last_name", "first_name"], name: "index_users_on_last_first", unique: true, using: :btree
+  add_index "users", ["table_id"], name: "index_users_on_table_id", using: :btree
   add_index "users", ["username"], name: "index_users_on_username", unique: true, using: :btree
 
   add_foreign_key "guess_who_user_answers", "guess_who_questions"
   add_foreign_key "guess_who_user_answers", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "users", "families"
+  add_foreign_key "users", "tables"
 end

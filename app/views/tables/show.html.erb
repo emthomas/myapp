@@ -1,0 +1,20 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Number:</strong>
+  <%= @table.number %><br>
+</p>
+
+<p>
+  <ul>
+    <% @table.users.each do |guest| %>
+      <li><%= link_to full_name(guest), guest %>: 
+          <%= link_to "remove", untable_user_path(guest) %>
+      </li>
+    <% end %>
+  </ul>
+</p>
+
+<%= link_to 'Edit', edit_table_path(@table) %> |
+<%= link_to 'Back', tables_path %>
+

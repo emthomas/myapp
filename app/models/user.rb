@@ -1,4 +1,6 @@
 class User < ActiveRecord::Base
+  belongs_to :table
+
   attr_accessor :remember_token
   attr_accessor :activation_token
   attr_accessor :view_as_guest
@@ -103,6 +105,10 @@ class User < ActiveRecord::Base
     update_attribute(:is_adult, false)
   end
 
+  def untable 
+    update_attribute(:table_id, nil)
+  end
+
   # Sends activation email.
   def send_activation_email
     UserMailer.account_activation(self).deliver_now
@@ -118,7 +124,12 @@ class User < ActiveRecord::Base
   def set_view_as_guest(option)
   	self.view_as_guest = option
   end
-  	
+  
+  def get_table
+    if self.table
+       self.table.number
+    end
+  end  	
   private
 	
     # Converts email to all lower-case.

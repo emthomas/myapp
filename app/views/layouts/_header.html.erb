@@ -7,6 +7,8 @@
             	<% if logged_in? %>
             		<% if current_user.admin? %>
           				<li><%= link_to "Guests", users_path %></li>
+          				<li><%= link_to "Tables", tables_path %></li>
+          				<li><%= link_to "Families", families_path %></li>
           				<li><%= link_to "Families", families_path %></li>
           				<li><%= link_to "Messages (#{Message.where(new_message: true).count})", messages_path %></li>
   					<% end %>
