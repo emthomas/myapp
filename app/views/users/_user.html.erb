@@ -10,7 +10,7 @@
 <% if current_user.admin? %>
 <td><%= user.logins %></td>
 <td><%= user.is_coming %></td>
-<td><%= user.get_guess_who_right_answers_count %></td>
+<td><%= "#{user.get_guess_who_right_answers_count}/#{user.get_answered_questions_count}" %></td>
 <% end %> 
 <td> 
 	<ul>
