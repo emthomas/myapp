@@ -4,6 +4,9 @@ class StaticPagesController < ApplicationController
   before_action :logged_in_user, only: [:wedding]
   
   def home
+    if logged_in?
+      current_user.increment_login
+    end 
   end
 
   def about
