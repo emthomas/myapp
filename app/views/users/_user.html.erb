@@ -8,9 +8,9 @@
     <% end %>
 </td>
 <% if current_user.admin? %>
-<td><%= user.admin %></td>
 <td><%= user.logins %></td>
 <td><%= user.is_coming %></td>
+<td><%= user.get_guess_who_right_answers_count %></td>
 <% end %> 
 <td> 
 	<ul>

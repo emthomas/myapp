@@ -17,14 +17,15 @@
     <th>Answer</th>
     <th>Choices</th>
     <% if current_user.admin?%>	
+    <th>Answered</th>
+    <th>Answered Right Count</th>
+    <th>Answered Right</th>
     <th>Actions</th>
 </tr>
 <%= form_tag(new_guess_who_question_path, method: "get") do %>
 <tr>  
   <td><%= text_field_tag :question, '', size: 75 %></td>
   <td><%= select_tag(:answer, options_for_select([['Seb', 'seb'], ['Sam', 'sam']]) )%></td>
-  <td></td>
-  <td></td>
   <td><%= submit_tag "add" %></td>
 </tr>
 <% end %>

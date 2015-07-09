@@ -90,6 +90,10 @@ class User < ActiveRecord::Base
   def get_answered_questions_count
     GuessWhoUserAnswer.where(:user_id => self.id).count
   end
+
+  def get_guess_who_right_answers_count
+    GuessWhoUserAnswer.where(:user_id => self.id).joins("JOIN guess_who_questions ON guess_who_questions.id = guess_who_user_answers.guess_who_question_id AND guess_who_questions.answer = guess_who_user_answers.answer").count
+  end
   
   def set_is_adult
     update_attribute(:is_adult, true)

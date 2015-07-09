@@ -7,6 +7,10 @@
 			<td><%= link_to "Seb", save_user_answer_guess_who_question_path(guess_who_question, :answer => "seb") %> |
 				<%= link_to "Sam", save_user_answer_guess_who_question_path(guess_who_question, :answer => "sam") %>
 			</td>
+
+                <td><%= guess_who_question.get_total_answered %></td>
+                <td><%= guess_who_question.get_right_answered.count %></td>
+                <td><%= guess_who_question.get_right_answered %></td>
 			<td>
 				<li><%= submit_tag "edit" %></li>
 				<li><%= link_to "delete", guess_who_question, method: :delete, data: { confirm: "You sure?" } %></li>
