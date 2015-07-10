@@ -70,7 +70,7 @@ ActiveRecord::Schema.define(version: 20150710065908) do
   end
 
   create_table "tables", force: :cascade do |t|
-    t.integer  "number",     limit: 4, default: -1, null: false
+    t.integer  "number",     limit: 4,              null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "capacity",   limit: 4, default: 15
@@ -98,7 +98,7 @@ ActiveRecord::Schema.define(version: 20150710065908) do
     t.boolean  "is_adult",          limit: 1,   default: true
     t.integer  "logins",            limit: 4,   default: 0
     t.date     "last_login"
-    t.integer  "table_id",          limit: 4
+    t.integer  "table_id",          limit: 4,   default: -1
     t.integer  "theme",             limit: 4,   default: 0
   end
 
