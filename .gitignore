@@ -13,5 +13,8 @@
 /tmp
 
 config/secrets.yml
+config/database.yml
 
 .vagrant
+Vagranfile
+bootstrap.sh
