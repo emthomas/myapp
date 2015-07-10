@@ -14,7 +14,10 @@
 <div>
 </div>
 
-<%= will_paginate %>
+
+<% unless @users.empty? %>
+  <%= will_paginate %>
+<% end %>
 
 <table>
 <tr>
@@ -45,4 +48,6 @@
   <%= render @users %>
 </table>
 
-<%= will_paginate %>
+<% unless @users.empty? %>
+  <%= will_paginate %>
+<% end %>

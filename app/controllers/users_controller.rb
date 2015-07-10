@@ -152,17 +152,16 @@ class UsersController < ApplicationController
                     .where("LOWER(first_name) LIKE '%#{params[:name_filter_param]}%' OR LOWER(last_name) LIKE '%#{params[:name_filter_param]}%'")
                     .order(:last_name)
 					
-		 if params[:seated_param] != ''
+		 unless params[:seated_param].blank?
 		   if params[:seated_param] == 'true'
-              @users = @users.joins(:table)				  
+              @users = @users.joins(:table)			  
            elsif params[:seated_param] == 'false'
 			  @seated_users = User.joins(:table)
 			  @users = @users - @seated_users
-           end
-
-         @users = @users.paginate(page: params[:page])		   
+           end		   
 		 end
-
+	    
+       @users = @users.paginate(page: params[:page], per_page: 25)
        @available_tables = Table.joins("LEFT OUTER JOIN users on users.table_id = tables.id").group(:number).having("count(*)<max(capacity)")
   end
   
