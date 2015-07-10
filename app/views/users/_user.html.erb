@@ -3,8 +3,8 @@
 <td><%= user.username %></td>
 <td><%= user.email %></td>
 <td><%= user.address %></td>
-<td><% if !user.family_id.nil? %>
-    <%= link_to user.family_name, Family.find(user.family_id) %>
+<td><% if !user.family.nil? %>
+    <%= link_to user.family.family_name, user.family %>
     <% end %>
 </td>
 <% if current_user.admin? %>

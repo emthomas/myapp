@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+  require 'will_paginate/array'
+
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update, :show]
   before_action :admin_user,	 only: [:index, :destroy, :show]
@@ -139,8 +141,7 @@ class UsersController < ApplicationController
   end
   
   def index
-       @users = User.joins("LEFT OUTER JOIN families on families.id = users.family_id")
-       		    .select("users.*, families.family_name")
+       @users = User.joins(:family)
        		    .where(params[:address_param])
                     .where(params[:email_param])
                     .where(params[:admin_param])
@@ -150,7 +151,17 @@ class UsersController < ApplicationController
                     .where(params[:is_adult_param])
                     .where("LOWER(first_name) LIKE '%#{params[:name_filter_param]}%' OR LOWER(last_name) LIKE '%#{params[:name_filter_param]}%'")
                     .order(:last_name)
-                    .paginate(page: params[:page])
+					
+		 if params[:seated_param] != ''
+		   if params[:seated_param] == 'true'
+              @users = @users.joins(:table)	  
+           else 
+			  @seated_users = User.joins(:table)
+			  @users = @users - @seated_users
+           end
+
+         @users = @users.paginate(page: params[:page])		   
+		 end
 
        @available_tables = Table.joins("LEFT OUTER JOIN users on users.table_id = tables.id").group(:number).having("count(*)<max(capacity)")
   end

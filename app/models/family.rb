@@ -12,4 +12,12 @@ before_save do
 def coming
   self.users.where(is_coming: 1)
 end
+
+def seated
+  self.coming.joins(:table)
+end
+
+def not_seated
+   self.coming - self.seated
+end
 end

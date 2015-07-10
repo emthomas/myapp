@@ -11,19 +11,7 @@
 
 <div>
 <table>
-<tr>
-    <th>Full Name</th>
-    <th>Username</th>
-    <th>Email</th>
-    <th>Address</th>
-    <th>Family</th>
-    <% if current_user.admin? %>
-       <th>Admin</th>
-       <th>Invited</th>
-       <th>Is Coming</th>
-    <% end %>		
-    <th>Actions</th>
-</tr>
+    <%= render 'users/user_headers' %>
 	<%= render @family_members %>
 </table>
 </div>

@@ -1,6 +1,6 @@
 <tr>
 <td><%= link_to family.family_name, family %></td>
-<td><%= "#{family.coming.size}/#{family.member_count}" %></td>
+<td><%= "#{family.member_count}/#{family.coming.size}/#{family.not_seated.size}" %></td>
 <td><ul>
 	<li><%= link_to "delete", family, method: :delete, data: { confirm: "You sure?" } %></li>
 	<li><%= link_to "edit", edit_family_path(family) %></li>
