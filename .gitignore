@@ -13,7 +13,7 @@
 /tmp
 
 config/secrets.yml
-config/database.yml
+#config/database.yml
 
 .vagrant
 ./Vagrantfile

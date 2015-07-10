@@ -24,7 +24,7 @@
         <td><%= table.capacity - table.users.size %></td>
         <td><%= link_to 'Edit', edit_table_path(table) %></td>
         <td><%= link_to 'Destroy', table, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        <td><% table.users.each do |guest| %>
+        <td><% table.users.order(:last_name).each do |guest| %>
         <%= "#{guest.first_name} #{guest.last_name}" %>,
         <% end %> 
         </td>
