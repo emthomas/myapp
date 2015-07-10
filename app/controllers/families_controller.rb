@@ -69,6 +69,8 @@ class FamiliesController < ApplicationController
        				      .select("users.*, families.family_name")
                     	  .order(:last_name)
                     	  #.paginate(page: params[:page])
+       @available_tables = Table.joins("LEFT OUTER JOIN users on users.table_id = tables.id").group(:number).having("count(*)<max(capacity)")
+
   end
   
   def edit

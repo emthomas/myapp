@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :table
+  belongs_to :family
 
   attr_accessor :remember_token
   attr_accessor :activation_token
