@@ -16,6 +16,6 @@ config/secrets.yml
 config/database.yml
 
 .vagrant
-Vagrantfile
-Cheffile
-bootstrap.sh
+./Vagrantfile
+./Cheffile
+./bootstrap.sh
