@@ -2,7 +2,9 @@
 
 <p>
   <strong>Table:</strong>
+  <% if !@picture.table.nil? %>
   <%= @picture.table.number %>
+  <% end %>
 </p>
 
 <p>
