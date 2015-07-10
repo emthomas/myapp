@@ -1,11 +1,17 @@
 <p id="notice"><%= notice %></p>
 
+<div class="center jumbotron">  
+	<%= image_tag(table_url(@table), :height => "75%", :width => "75%", alt: table_url(@table)) %>
+</div>
 <p>
-  <strong>Number:</strong>
+  <strong>Table Number:</strong>
   <%= @table.number %><br>
 </p>
-
 <p>
+  <strong>Table Name:</strong>
+  <%= table_name(@table) %><br>
+</p>
+<p> <strong>Guests:</strong>
   <ul>
     <% @table.users.each do |guest| %>
       <li><%= link_to full_name(guest), guest %>: 

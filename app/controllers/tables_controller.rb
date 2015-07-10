@@ -75,6 +75,15 @@ class TablesController < ApplicationController
     redirect_to :back
   end
 
+  def flip_theme
+    new_user = current_user
+    new_user.flip_theme
+    respond_to do |format|
+      format.html { redirect_to tables_url }
+      format.json { head :no_content }
+    end
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_table

@@ -1,11 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <h1>Listing Tables</h1>
+<h2><%= link_to get_theme(current_user.theme), flip_theme_path %></h2>
 
 <table>
   <thead>
     <tr>
-      <th>Number</th>
+      <th>Table #</th>
+      <th>Table Name</th>
       <th>Capacity</th>
       <th>Available</th>
       <th colspan="2"></th>
@@ -17,6 +19,7 @@
     <% @tables.each do |table| %>
       <tr>
         <td><%= link_to table.number, table %></td>
+        <td><%= table_name(table) %></td>
         <td><%= table.capacity %></td>
         <td><%= table.capacity - table.users.size %></td>
         <td><%= link_to 'Edit', edit_table_path(table) %></td>

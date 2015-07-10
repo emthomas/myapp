@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :pictures
+
   resources :tables
 
   root               		'static_pages#home'
@@ -12,7 +14,8 @@ Rails.application.routes.draw do
   get    	'login'   	=> 	'sessions#new'
   post   	'login'   	=> 	'sessions#create'
   delete 	'logout'  	=> 	'sessions#destroy'
-  
+  get           'flip_theme'    =>      'tables#flip_theme'  
+
   resources :users do
   	member do
   		get :activate

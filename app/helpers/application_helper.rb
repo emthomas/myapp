@@ -14,6 +14,28 @@ module ApplicationHelper
     num = 1 + rand(12)
     "pic_#{num}.jpeg"
   end
+  
+  def table_url(table = nil)
+    unless table.nil?
+     pic = Picture.where("pictures.table_id=#{table.id} AND theme=#{current_user.theme}").first
+	 unless pic.nil?
+	    pic.url
+     end
+	end
+  end
+  
+  def table_name(table = nil)
+    unless table.nil?
+     pic = Picture.where("pictures.table_id=#{table.id} AND theme=#{current_user.theme}").first
+	 unless pic.nil?
+	    pic.name
+     end
+	end
+  end
+  
+  def get_theme(id = 0)
+    id == 0 ? "beach" : "destination"
+  end
 
   def guess_who_questions_count
      GuessWhoQuestion.count

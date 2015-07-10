@@ -5,6 +5,18 @@ class User < ActiveRecord::Base
   attr_accessor :activation_token
   attr_accessor :view_as_guest
   
+  def flip_theme
+    if self.theme == 1
+       update_attribute(:theme,0)
+    else
+       update_attribute(:theme,1)
+    end
+  end
+  
+  def get_theme
+    self.theme == 1 ? "destination" : "beach"
+  end
+
   before_save do 
   	self.email = email.downcase if !email.nil?
   	self.email = nil if (!email.nil? && email.empty?)
