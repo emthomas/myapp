@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  table_id: 
+  theme: 1
+  url: MyString
+  name: MyString
+
+two:
+  table_id: 
+  theme: 1
+  url: MyString
+  name: MyString

@@ -1,0 +1,28 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Table:</strong>
+  <%= @picture.table.number %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @picture.theme %>
+</p>
+
+<p>
+  <strong>Url:</strong>
+  <%= @picture.url %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @picture.name %>
+</p>
+
+<p>
+  <%= image_tag(@picture.url, :height => "auto", :width => "75%", alt: random_pic) %>
+</p>
+
+<%= link_to 'Edit', edit_picture_path(@picture) %> |
+<%= link_to 'Back', pictures_path %>
