@@ -41,4 +41,11 @@ module ApplicationHelper
      GuessWhoQuestion.count
   end
   
+  def user_available_tables(tables = nil, user = nil)
+    unless user.nil?
+      tables.where("id != #{user}")
+	end
+	tables
+  end
+  
 end

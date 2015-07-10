@@ -9,11 +9,13 @@
 </td>
 <% if current_user.admin? %>
 <td><%= user.logins %></td>
-<td><%= user.get_table %></td>
+<td><% if !user.table.nil? %>
+    <%= link_to table_name(user.table), user.table %>
+	<% end %></td>
 <% if !user.is_coming %>
   <td></td>
 <% else %>
-  <td><% @available_tables.each do |table| %>
+  <td><% user_available_tables(@available_tables,user.table_id).each do |table| %>
     <%= link_to "#{table.number}", [:add_user, user, table] %>  
   <% end %>
   </td>
