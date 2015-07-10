@@ -154,8 +154,8 @@ class UsersController < ApplicationController
 					
 		 if params[:seated_param] != ''
 		   if params[:seated_param] == 'true'
-              @users = @users.joins(:table)	  
-           else 
+              @users = @users.joins(:table)				  
+           elsif params[:seated_param] == 'false'
 			  @seated_users = User.joins(:table)
 			  @users = @users - @seated_users
            end
