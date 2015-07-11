@@ -1,9 +1,13 @@
 <tr>
 <td><%= link_to family.family_name, family %></td>
 <td><%= "#{family.member_count}/#{family.coming.size}/#{family.not_seated.size}" %></td>
+<td><% all_available_tables.each do |table| %>
+    <%= link_to table.number, [:add_family, family, table] %>(<%= table.capacity - table.users.size %>) 
+  <% end %>
 <td><ul>
 	<li><%= link_to "delete", family, method: :delete, data: { confirm: "You sure?" } %></li>
 	<li><%= link_to "edit", edit_family_path(family) %></li>
+	<li><%= link_to "remove from table", untable_family_path(family) %></li>
      </ul>
 </td>
 </tr>

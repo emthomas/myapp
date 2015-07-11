@@ -74,6 +74,24 @@ class TablesController < ApplicationController
     new_user.update_attribute(:table_id,null)
     redirect_to :back
   end
+  
+  def add_family
+    new_family = Family.find(params[:family_id])
+    new_table = Table.find(params[:id])
+    new_family.not_seated.each do |new_user| 
+		new_user.update_attribute(:table_id,new_table.id)
+	end
+    redirect_to :back
+  end
+  
+  def remove_family
+    new_family = Family.find(params[:family_id])
+    new_table = Table.find(params[:id])
+	new_family.seated.each do |new_user|
+		#new_user.update_attribute(:table_id,null)
+	end
+    redirect_to :back
+  end
 
   def flip_theme
     new_user = current_user

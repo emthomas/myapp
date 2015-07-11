@@ -26,15 +26,16 @@ Rails.application.routes.draw do
   		get :isnotcoming
   		get :set_is_not_adult
   		get :set_is_adult
-                get ':action/:table_id'
-                get :untable
+        get ':action/:table_id'
+        get :untable
   	end
-        resources :tables do
-          member do
-             get :add_user
-             get :remove_user
-          end
+    resources :tables do
+        member do
+		   get :add_user
+		   get :remove_user
         end
+		  
+     end
   end
   
   resources :guess_who_questions do
@@ -43,7 +44,18 @@ Rails.application.routes.draw do
   	end
   end
   
-  resources :families
+  resources :families do
+    member do
+        get :untable
+  	end
+  
+	resources :tables do
+        member do
+		   get :add_family
+           get :remove_family
+        end
+	end
+  end
   
   resources :messages do
   	member do

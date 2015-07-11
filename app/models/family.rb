@@ -20,4 +20,10 @@ end
 def not_seated
    self.coming - self.seated
 end
+
+def untable
+   self.seated.each do |user| 
+      user.update_attribute(:table_id, nil)
+  end
+end
 end

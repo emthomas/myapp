@@ -77,6 +77,12 @@ class FamiliesController < ApplicationController
     @family = Family.find(params[:id])
   end
   
+  def untable
+    @family = Family.find(params[:id])
+    @family.untable
+    redirect_to :back
+  end
+  
   private
 
     def family_params

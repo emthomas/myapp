@@ -48,4 +48,8 @@ module ApplicationHelper
 	tables
   end
   
+  def all_available_tables
+    Table.joins("LEFT OUTER JOIN users on users.table_id = tables.id").group(:number).having("count(*)<max(capacity)")
+  end
+  
 end
