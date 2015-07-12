@@ -23,6 +23,7 @@ class User < ActiveRecord::Base
   	self.email = nil if (!email.nil? && email.empty?)
     self.address = nil if (!address.nil? && address.empty?)
   	self.username = (last_name.gsub(/[^0-9a-z]/i, '')+"."+first_name.gsub(/[^0-9a-z]/i, '')).downcase
+	self.table_id = nil if !is_coming
   end
   
   before_create :create_activation_digest
