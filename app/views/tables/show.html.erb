@@ -11,6 +11,14 @@
   <strong>Table Name:</strong>
   <%= table_name(@table) %><br>
 </p>
+<p>
+  <strong>Capacity:</strong>
+  <%= @table.capacity %><br>
+</p>
+<p>
+  <strong>Guests:</strong>
+  <%= @table.users.size %><br>
+</p>
 <p> <strong>Guests:</strong>
   <ul>
     <% @table.users.each do |guest| %>

@@ -26,4 +26,5 @@ def untable
       user.update_attribute(:table_id, nil)
   end
 end
+
 end

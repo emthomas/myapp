@@ -62,9 +62,9 @@ class TablesController < ApplicationController
   end
   
   def add_user
-    new_user = User.find(params[:user_id])
     new_table = Table.find(params[:id])
-    new_user.update_attribute(:table_id,new_table.id)
+	new_user = User.find(params[:user_id])
+	new_table.add_user(new_user)
     redirect_to :back
   end
   
@@ -78,8 +78,11 @@ class TablesController < ApplicationController
   def add_family
     new_family = Family.find(params[:family_id])
     new_table = Table.find(params[:id])
-    new_family.not_seated.each do |new_user| 
-		new_user.update_attribute(:table_id,new_table.id)
+    new_family.not_seated.each do |new_user|
+      answer = new_table.add_user(new_user)
+	  if answer.nil?
+	    flash[:danger] = "Flight to #{new_table.name} is now full. Find another destination for the other #{new_family.not_seated.size} guests."
+	  end
 	end
     redirect_to :back
   end
