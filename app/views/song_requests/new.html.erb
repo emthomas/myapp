@@ -1,0 +1,22 @@
+<h1>New Song Request</h1>
+<h2>You can request up to 5 songs per day.<br>
+    So far you requested <%= current_user.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size %> today.
+</h2>
+
+<% if current_user.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size >= 5 %>
+<h2>Please come back tomorrow to request more!!!</h2>
+<% else %>
+<%= render 'form' %>
+<% end %>
+
+<% if current_user.song_requests.size > 0 %>
+<p> <strong>Requested:</strong>
+  <ul>
+    <% current_user.song_requests.order(:name).each do |song| %>
+	  <li><%= link_to song.name, edit_song_request_path(song) %> by <%= song.author %></li>
+    <% end %>
+  </ul>
+</p>
+<% end %>
+
+<%= link_to 'Back', song_requests_path %>

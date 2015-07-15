@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150710065908) do
+ActiveRecord::Schema.define(version: 20150715021447) do
 
   create_table "families", force: :cascade do |t|
     t.string   "family_name",  limit: 255
@@ -69,8 +69,18 @@ ActiveRecord::Schema.define(version: 20150710065908) do
     t.string "name", limit: 255
   end
 
+  create_table "song_requests", force: :cascade do |t|
+    t.string   "name",       limit: 255
+    t.string   "author",     limit: 255
+    t.integer  "user_id",    limit: 4
+    t.datetime "created_at",             null: false
+    t.datetime "updated_at",             null: false
+  end
+
+  add_index "song_requests", ["user_id"], name: "index_song_requests_on_user_id", using: :btree
+
   create_table "tables", force: :cascade do |t|
-    t.integer  "number",     limit: 4,              null: false
+    t.integer  "number",     limit: 4, default: -1, null: false
     t.datetime "created_at",                        null: false
     t.datetime "updated_at",                        null: false
     t.integer  "capacity",   limit: 4, default: 15
@@ -98,7 +108,7 @@ ActiveRecord::Schema.define(version: 20150710065908) do
     t.boolean  "is_adult",          limit: 1,   default: true
     t.integer  "logins",            limit: 4,   default: 0
     t.date     "last_login"
-    t.integer  "table_id",          limit: 4,   default: -1
+    t.integer  "table_id",          limit: 4
     t.integer  "theme",             limit: 4,   default: 0
   end
 
@@ -112,6 +122,7 @@ ActiveRecord::Schema.define(version: 20150710065908) do
   add_foreign_key "guess_who_user_answers", "users"
   add_foreign_key "messages", "users"
   add_foreign_key "pictures", "tables"
+  add_foreign_key "song_requests", "users"
   add_foreign_key "users", "families"
   add_foreign_key "users", "families"
   add_foreign_key "users", "tables"

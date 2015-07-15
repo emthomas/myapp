@@ -7,6 +7,7 @@
   <% if logged_in? %>
   <%= link_to "Wedding Info", wedding_path, class: "btn btn-lg btn-primary" %>
   <%= link_to "Guess Who! (#{current_user.get_answered_questions_count}/#{guess_who_questions_count} answered)", guess_who_questions_path, class: "btn btn-lg btn-primary" %>
+  <%= link_to "Request Songs", new_song_request_path, class: "btn btn-lg btn-primary" %>
   <% if current_user.admin? %>
   <%= link_to "Our Story", our_story_path, class: "btn btn-lg btn-primary" %>
   <% end %>
@@ -25,10 +26,11 @@
   Sam & Seb
   </p>
   
-  <h2 style="color:red">Breaking News!!!</h2>
+  <h2 style="color:green">Breaking News!!!</h2>
   <p>
   <ul>
      <li>The more you stalk our website, the better your chances to win. So make sure you come back daily ;). You have <%= current_user.logins %> login points so far!!!</li>
+	 <li>You also get more points for requesting songs!!! You have <%= current_user.song_requests.size %> requets points so far!!!</li>
   </ul>
   </p>
   <% else %>

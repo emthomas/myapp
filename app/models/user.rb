@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
   belongs_to :table
   belongs_to :family
+  has_many :song_requests
 
   attr_accessor :remember_token
   attr_accessor :activation_token

@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  resources :song_requests
+
   resources :pictures
 
   resources :tables
@@ -14,7 +16,9 @@ Rails.application.routes.draw do
   get    	'login'   	=> 	'sessions#new'
   post   	'login'   	=> 	'sessions#create'
   delete 	'logout'  	=> 	'sessions#destroy'
-  get           'flip_theme'    =>      'tables#flip_theme'  
+  get           'flip_theme'    =>      'tables#flip_theme'
+  post      'twilio/voice'   =>  'twilio#voice'
+  post      'twilio/notify'  =>  'twilio#notify'
 
   resources :users do
   	member do
