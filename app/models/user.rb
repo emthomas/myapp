@@ -112,6 +112,14 @@ class User < ActiveRecord::Base
     GuessWhoUserAnswer.where(:user_id => self.id).joins("JOIN guess_who_questions ON guess_who_questions.id = guess_who_user_answers.guess_who_question_id AND guess_who_questions.answer = guess_who_user_answers.answer").count
   end
   
+  def get_total_points
+    get_answered_questions_count*0.25 + get_guess_who_right_answers_count*0.25 + song_requests.size*0.25 + logins*0.25
+  end
+  
+  def get_request_count
+    song_requests.size
+  end
+  
   def set_is_adult
     update_attribute(:is_adult, true)
   end

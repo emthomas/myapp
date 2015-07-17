@@ -7,10 +7,6 @@
     <th><%= label_tag(:email_param, "Email:") %></th>
     <th><%= label_tag(:admin_param, "Admin:") %></th>
     <th><%= label_tag(:invited_param, "Logged In:") %></th>
-    <th><%= label_tag(:is_coming_param, "Is Coming:") %></th>
-    <th><%= label_tag(:is_adult_param, "Is Adult:") %></th>
-    <th><%= label_tag(:activated_param, "Is Activated:") %></th>
-	<th><%= label_tag(:seated_param, "Is Seated:") %></th>
 </tr>
 <tr>
 	<td><%= text_field_tag :name_filter_param %></td>
@@ -18,10 +14,20 @@
 	<td><%= select_tag(:email_param, options_for_select([['All', ''], ['Unknown', 'email is null'], ['Known', 'email is not null']]) )%></td>
 	<td><%= select_tag(:admin_param, options_for_select([['All', ''], ['Yes', 'admin = 1'], ['No', 'admin = 0']]) )%></td>
 	<td><%= select_tag(:invited_param, options_for_select([['All', ''], ['Yes', 'logins > 0'], ['No', 'logins = 0']]) )%></td>
+</tr>
+<tr>
+    <th><%= label_tag(:is_coming_param, "Is Coming:") %></th>
+    <th><%= label_tag(:is_adult_param, "Is Adult:") %></th>
+    <th><%= label_tag(:activated_param, "Is Activated:") %></th>
+	<th><%= label_tag(:seated_param, "Is Seated:") %></th>
+	<th><%= label_tag(:sort_by_param, "Sorted By:") %></th>
+</tr>
+<tr>
 	<td><%= select_tag(:is_coming_param, options_for_select([['All', ''], ['Yes', 'is_coming = 1'], ['No', 'is_coming = 0']]) )%></td>
 	<td><%= select_tag(:is_adult_param, options_for_select([['All', ''], ['Yes', 'is_adult = 1'], ['No', 'is_adult = 0']]) )%></td>
 	<td><%= select_tag(:activated_param, options_for_select([['All', ''], ['Yes', 'activated = 1'], ['No', 'activated = 0']]) )%></td>
 	<td><%= select_tag(:seated_param, options_for_select([['All', nil], ['Yes', true], ['No', false]]) )%></td>
+	<td><%= select_tag(:sort_by_param, options_for_select([['', nil], ['Points', 'points'], ['Logins', 'logins'], ['Requests', 'requests'], ['Answers', 'answers']]) )%></td>
 </tr>
 </table>
 <%= submit_tag("Apply Filters") %>

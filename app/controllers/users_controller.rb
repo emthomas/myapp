@@ -152,6 +152,18 @@ class UsersController < ApplicationController
                     .where("LOWER(first_name) LIKE '%#{params[:name_filter_param]}%' OR LOWER(last_name) LIKE '%#{params[:name_filter_param]}%'")
                     .order(:last_name)
 					
+		 unless params[:sort_by_param].blank?
+		   if params[:sort_by_param] == 'points'
+              @users = @users.sort_by(&:get_total_points).reverse			  
+           elsif params[:sort_by_param] == 'logins'
+              @users = @users.sort_by(&:logins).reverse			  
+           elsif params[:sort_by_param] == 'requests'
+              @users = @users.sort_by(&:get_request_count).reverse			  
+           elsif params[:sort_by_param] == 'answers'
+              @users = @users.sort_by(&:get_answered_questions_count).reverse
+           end		   
+		 end
+		 
 		 unless params[:seated_param].blank?
 		   if params[:seated_param] == 'true'
               @users = @users.joins(:table)			  
