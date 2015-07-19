@@ -4,7 +4,7 @@
 </h2>
 
 <% if current_user.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size >= 5 %>
-<h2>Please come back tomorrow to request more!!!</h2>
+<h2>Please come back in <%= time_to_request %> to request more!!!</h2>
 <% else %>
 <%= render 'form' %>
 <% end %>
