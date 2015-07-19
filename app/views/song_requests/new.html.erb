@@ -3,7 +3,7 @@
     So far you requested <%= current_user.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size %> today.
 </h2>
 
-<% if current_user.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size >= 5 %>
+<% if current_user.song_requests.where("DATE(CONVERT_TZ(created_at,'GMT','EST')) = DATE(?)", Time.now.in_time_zone("Eastern Time (US & Canada)")).size >= 1 %>
 <h2>Please come back in <%= time_to_request %> to request more!!!</h2>
 <% else %>
 <%= render 'form' %>
