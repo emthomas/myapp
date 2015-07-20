@@ -53,7 +53,7 @@ module ApplicationHelper
   end
   
   def time_to_request
-    start_time = Time.now.in_time_zone("Eastern Time (US & Canada)")
+    start_time = Time.now
 	end_time = (start_time + 1.day).beginning_of_day()
     
     seconds_diff = (start_time - end_time).to_i.abs
