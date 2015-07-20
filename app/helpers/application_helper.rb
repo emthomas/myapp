@@ -66,6 +66,7 @@ module ApplicationHelper
 
     seconds = seconds_diff
 
-    "#{hours.to_s.rjust(2, '0')}:#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
+    #"#{hours.to_s.rjust(2, '0')}:#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
+	"tomorrow"
   end
 end
