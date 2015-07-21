@@ -172,6 +172,12 @@ class UsersController < ApplicationController
 			  @users = @users - @seated_users
            end		   
 		 end
+		 
+		 unless params[:first_name_in_filter_param].blank?
+		   first_names = params[:first_name_in_filter_param].gsub(/\s/i, '').split(",")
+		   flash.now[:danger] = first_names
+		   @users = @users.where(first_name: first_names)
+		 end
 	    
        @users = @users.paginate(page: params[:page], per_page: 25)
        @available_tables = Table.joins("LEFT OUTER JOIN users on users.table_id = tables.id").group(:number).having("count(*)<max(capacity)")

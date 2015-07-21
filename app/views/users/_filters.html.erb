@@ -3,6 +3,7 @@
 <table>
 <tr>
     <th><%= label_tag(:name_filter_param, "Name Contains:") %></th>
+	<th><%= label_tag(:first_name_in_filter_param, "First Name In: (ex: sebastien,samantha)") %></th>
     <th><%= label_tag(:address_param, "Address:") %></th>
     <th><%= label_tag(:email_param, "Email:") %></th>
     <th><%= label_tag(:admin_param, "Admin:") %></th>
@@ -10,6 +11,7 @@
 </tr>
 <tr>
 	<td><%= text_field_tag :name_filter_param %></td>
+	<td><%= text_field_tag :first_name_in_filter_param %></td>
 	<td><%= select_tag(:address_param, options_for_select([['All', ''], ['Unknown', 'address is null'], ['Known', 'address is not null']]) )%></td>
 	<td><%= select_tag(:email_param, options_for_select([['All', ''], ['Unknown', 'email is null'], ['Known', 'email is not null']]) )%></td>
 	<td><%= select_tag(:admin_param, options_for_select([['All', ''], ['Yes', 'admin = 1'], ['No', 'admin = 0']]) )%></td>
