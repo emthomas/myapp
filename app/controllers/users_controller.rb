@@ -186,6 +186,7 @@ class UsersController < ApplicationController
   def index_coming
        @count = 0
        @users = User.where("is_coming = 1").order(:last_name).order(:first_name)
+	   render 'users/index_coming'
   end
   
   private
