@@ -16,9 +16,10 @@ Rails.application.routes.draw do
   get    	'login'   	=> 	'sessions#new'
   post   	'login'   	=> 	'sessions#create'
   delete 	'logout'  	=> 	'sessions#destroy'
-  get           'flip_theme'    =>      'tables#flip_theme'
+  get       'flip_theme'    =>      'tables#flip_theme'
   post      'twilio/voice'   =>  'twilio#voice'
   post      'twilio/notify'  =>  'twilio#notify'
+  get       'coming_guests' => 'users#index_coming'
 
   resources :users do
   	member do

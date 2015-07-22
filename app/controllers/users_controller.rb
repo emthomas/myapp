@@ -183,6 +183,11 @@ class UsersController < ApplicationController
        @available_tables = Table.joins("LEFT OUTER JOIN users on users.table_id = tables.id").group(:number).having("count(*)<max(capacity)")
   end
   
+  def index_coming
+       @count = 0
+       @users = User.where("is_coming = 1").order(:last_name).order(:first_name)
+  end
+  
   private
 
     def user_params
