@@ -1,0 +1,17 @@
+<% provide(:title, 'Final Guest Count') %>
+<div class="center jumbotron">
+	<h1>Final Guests Count</h1>
+	<h3><%= User.where(is_coming: true).count %></h3>
+</div>
+
+<table>
+<tr>
+<% @users.each do |guest| %>
+	<td><%= full_name(guest) %></td>
+    <% @count+=1 %>
+    <% if @count%7==0 %>
+	   <td></td></tr><tr>
+	<% end %>
+<% end %>
+</tr>
+</table>
