@@ -5,7 +5,7 @@
 </div>
 
 <table>
-<tr><td>Table</td><td>Name</td><td>Tab#</td><td>Name</td><td>Tab#</td><td>Name</td></tr>
+<tr><td>Table #</td><td>Name</td><td>Table #</td><td>Name</td><td>Table #</td><td>Name</td></tr>
 <tr>
 <% @users.each do |guest| %>
 	<td><%= guest.table.number unless guest.table.nil? %></td><td><%= full_name(guest) %></td>

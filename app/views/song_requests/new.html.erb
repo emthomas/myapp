@@ -1,9 +1,9 @@
 <h1>New Song Request</h1>
-<h2>You can request up to 5 songs per day.<br>
+<h2>You can request up to <%= current_user.request_allowed %> songs per day.<br>
     So far you requested <%= current_user.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size %> today.
 </h2>
 
-<% if current_user.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size >= 5 %>
+<% if current_user.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size >= current_user.request_allowed %>
 <h2>Please come back in <%= time_to_request %> to request more!!!</h2>
 <% else %>
 <%= render 'form' %>

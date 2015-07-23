@@ -152,7 +152,16 @@ class User < ActiveRecord::Base
     if self.table
        self.table.number
     end
-  end  	
+  end  
+
+  def request_allowed
+	   (self.song_requests.size.to_i / 7) + 5   
+  end
+  
+  def request_extra
+	   self.song_requests.size.to_i / 7  
+  end
+	
   private
 	
     # Converts email to all lower-case.

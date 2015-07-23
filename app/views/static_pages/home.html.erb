@@ -31,6 +31,7 @@
   <ul>
      <li>The more you stalk our website, the better your chances to win. So make sure you come back daily ;). You have <%= current_user.logins %> login points so far!!!</li>
 	 <li>You also get more points for requesting songs!!! You have <%= current_user.song_requests.size %> requets points so far!!!</li>
+	 <li style="color:red">You want more points? For every 7 songs you request, you get 1 extra request per day! You have <%= current_user.request_extra %> extra requests per day!</li>
   </ul>
   </p>
   <% else %>
