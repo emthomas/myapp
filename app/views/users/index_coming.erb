@@ -5,12 +5,12 @@
 </div>
 
 <table>
+<tr><td>Table</td><td>Name</td><td>Tab#</td><td>Name</td><td>Tab#</td><td>Name</td></tr>
 <tr>
 <% @users.each do |guest| %>
-	<td><%= full_name(guest) %></td>
+	<td><%= guest.table_id %></td><td><%= full_name(guest) %></td>
     <% @count+=1 %>
-    <% if @count%7==0 %>
-	   <td></td></tr><tr>
+    <% if @count%3==0 %></tr><tr>
 	<% end %>
 <% end %>
 </tr>
