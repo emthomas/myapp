@@ -8,7 +8,7 @@
 <tr><td>Table</td><td>Name</td><td>Tab#</td><td>Name</td><td>Tab#</td><td>Name</td></tr>
 <tr>
 <% @users.each do |guest| %>
-	<td><%= guest.table_id %></td><td><%= full_name(guest) %></td>
+	<td><%= guest.table.number unless guest.table.nil? %></td><td><%= full_name(guest) %></td>
     <% @count+=1 %>
     <% if @count%3==0 %></tr><tr>
 	<% end %>
