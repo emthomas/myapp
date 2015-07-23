@@ -4,7 +4,11 @@ Rails.application.routes.draw do
 
   resources :pictures
 
-  resources :tables
+  resources :tables do
+    member do
+	   get :empty
+	end
+  end
 
   root               		'static_pages#home'
   get 		'home'    	=> 	'static_pages#home'

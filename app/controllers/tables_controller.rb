@@ -61,6 +61,16 @@ class TablesController < ApplicationController
     end
   end
   
+  def empty
+    new_table = Table.find(params[:id])
+	#flash[:danger] = "#{new_table.users}"
+	new_table.users.each do |user|
+	   #flash[:danger] = "#{user}"
+	   user.untable
+	end
+	redirect_to :back
+  end
+  
   def add_user
     new_table = Table.find(params[:id])
 	new_user = User.find(params[:user_id])
