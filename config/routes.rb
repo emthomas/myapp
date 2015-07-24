@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   get 		'home'    	=> 	'static_pages#home'
   get 		'about'   	=>  'static_pages#about'
   get		'wedding' 	=>  'static_pages#wedding'
+  get		'venue_cost' 	=>  'static_pages#venue_cost'
   get		'our_story' =>  'static_pages#our_story'
   get		'contact_us' =>  'static_pages#contact_us'
   get		'signup'  	=>	'users#new'
