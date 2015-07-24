@@ -155,11 +155,15 @@ class User < ActiveRecord::Base
   end  
 
   def request_allowed
-	   (self.song_requests.size.to_i / 7) + 5   
+	   (self.song_requests.size.to_i / 7) + 1  
   end
   
   def request_extra
 	   self.song_requests.size.to_i / 7  
+  end
+  
+  def request_today
+	   self.song_requests.where("DATE(created_at) = DATE(?)", Time.now).size  
   end
 	
   private

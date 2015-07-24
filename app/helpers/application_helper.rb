@@ -69,4 +69,69 @@ module ApplicationHelper
     #"#{hours.to_s.rjust(2, '0')}:#{minutes.to_s.rjust(2, '0')}:#{seconds.to_s.rjust(2, '0')}"
 	"tomorrow"
   end
+  
+  def get_pretax_total(count=0, amount=0)
+	 number_with_precision(count*amount, :precision => 2, :delimiter => ',')
+  end
+  
+  def adult_cost
+	70
+  end
+  
+  def child_vendor_cost
+	45
+  end
+  
+  def adult_count
+     User.where(is_coming: true).where(is_adult: true).count
+  end
+  
+  def child_count
+	User.where(is_coming: true).where(is_adult: false).count - vendor_count
+  end
+  
+  def vendor_count
+	4
+  end
+  
+  def adult_total_cost
+	adult_count*adult_cost
+  end
+  
+  def child_total_cost
+	child_count*child_vendor_cost
+  end
+  
+  def vendor_total_cost
+	vendor_count*child_vendor_cost
+  end
+  
+  def subtotal
+	adult_total_cost+child_total_cost+vendor_total_cost
+  end
+  
+  def tax_amount
+	subtotal * 0.08625
+  end
+  
+  def after_tax_total
+	subtotal + tax_amount
+  end
+  
+  def deposit
+	5000
+  end
+  
+  def current_check
+	11472.98
+  end
+  
+  def balance
+	after_tax_total - deposit - current_check
+  end
+  
+  def format(amount=0)
+    number_with_precision(amount, :precision => 2, :delimiter => ',')
+  end
+  
 end

@@ -1,7 +1,15 @@
 <% provide(:title, 'Final Guest Count') %>
 <div class="center jumbotron">
 	<h1>Final Guests Count</h1>
-	<h3><%= User.where(is_coming: true).count %></h3>
+	<h3>Guests: <%= adult_count %> @ $<%= format(adult_cost) %> => $<%= format(adult_total_cost) %></h3>
+	<h3>Children: <%= child_count %> @ $<%= format(child_vendor_cost) %> => $<%= format(child_total_cost) %></h3>
+	<h3>Vendors: <%= vendor_count %> @ $<%= format(child_vendor_cost) %> => $<%= format(vendor_total_cost) %></h3>
+	<h3>Subtotal: $<%= format(subtotal) %></h3>
+	<h3>Tax @ 8.625% => $<%= format(tax_amount) %></h3>
+	<h3>TOTAL => $<%= format(after_tax_total) %></h3>
+	<h3>Deposit => $<%= format(deposit) %></h3>
+	<h3>Current Check => $<%= format(current_check) %></h3>
+	<h3>Due => $<%= format(balance) %></h3>
 </div>
 
 <table>
