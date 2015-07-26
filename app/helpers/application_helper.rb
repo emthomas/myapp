@@ -10,6 +10,12 @@ module ApplicationHelper
     end
   end
   
+  def get_days_left
+    today = Date.today
+    wedding_date = Date.new(2015,7,30)
+    (wedding_date - today).to_i
+  end
+  
   def random_pic
     num = 1 + rand(12)
     "pic_#{num}.jpeg"

@@ -11,6 +11,13 @@ module SessionsHelper
     user.increment_login 
   end
   
+  # Get number of ays left til weeding
+  def get_days_left
+    today = Date.today
+    wedding_date = Date.new(2015,7,30)
+    (wedding_date - today).to_i
+  end
+  
   # Remembers a user in a persistent session.
   def remember(user)
     user.remember

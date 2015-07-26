@@ -10,7 +10,13 @@ class SessionsController < ApplicationController
 			if user.activated? && user.authenticate(params[:session][:password])
 				log_in user
 				params[:session][:remember_me] == '1' ? remember(user) : forget(user)
-				redirect_back_or root_url
+				
+				if get_days_left < 5 && !logged_in_admin?
+				   flash[:danger] = "Woops! Thanks for everything! we are already enjoying our honeymoon or about to! Leave us a message if you want!"
+				   destroy
+				else
+				 redirect_back_or root_url
+				end
 			else
 				if user.activated?
 					flash[:danger] = "Invalid username/password combination"
@@ -33,4 +39,5 @@ class SessionsController < ApplicationController
     log_out if logged_in?
     redirect_to root_url
   end
+  
 end
